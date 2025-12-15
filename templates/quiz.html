@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <div class="module-container">
+        {%for module in modules%}
+        <button class="modulePickerBtn" data-modul={{module}}>{{module}}</button>
+        {%endfor%}
+    </div>
+            
+    <div class="question-container"><h1 id="question-text"></h1></div>
+
+    <div class="score-box" style="display: none;">
+        <h3 class="points">Punkte</h3>
+        <p class="score" id="score">0</p>
+    </div>
+
+    <div class="answers-container">
+    <button class="answer-btn" data-answer="a" style="display: none;"></button>
+    <button class="answer-btn" data-answer="b" style="display: none;"></button>
+    <button class="answer-btn" data-answer="c" style="display: none;"></button> 
+    </div>
+
+    
+    
+    <script src="{{ url_for('static', filename='quiz.js') }}"></script>
+</body>
+</html>
