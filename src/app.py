@@ -12,7 +12,7 @@ asked_questions = []
 
 def get_module():
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    db_path = os.path.join(script_dir,  "quiz.db")
+    db_path = os.path.join(script_dir,  "..", "data", "quiz.db")
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
@@ -26,7 +26,7 @@ def get_module():
 def get_random_question(module):
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    db_path = os.path.join(script_dir, "quiz.db")
+    db_path = os.path.join(script_dir, "..", "data", "quiz.db")
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     
@@ -53,6 +53,7 @@ def get_random_question(module):
 @app.route('/')
 def start():
     session["score"] = 0
+    session["streak"] = 0
     modules = get_module()
     return render_template("quiz.html", modules=modules)
 
@@ -68,7 +69,7 @@ def check_answer():
     selected_answer = data.get("selected_answer")
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    db_path = os.path.join(script_dir, "quiz.db")
+    db_path = os.path.join(script_dir, "..", "data", "quiz.db")
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
@@ -83,10 +84,24 @@ def check_answer():
     is_correct = (selected_answer.lower() == correct_answer.lower())
     if "score" not in session:
         session["score"] = 0
+    if "streak" not in session:
+        session["streak"] = 0
+
     if is_correct:
         session["score"] += 1   
+        session["streak"] += 1
+    else:
+        session["streak"] = 0
 
-    return jsonify({"correct": is_correct, "score": session["score"], "correct_answer": correct_answer.lower()})
+    show_celebration = (session["streak"] in [5, 10, 20])
+
+    return jsonify({
+        "correct": is_correct, 
+        "score": session["score"], 
+        "correct_answer": correct_answer.lower(),
+        "streak": session["streak"],
+        "celebrate": show_celebration
+        })
 
 @app.route("/get_question/<module>")
 def get_question(module):
@@ -100,7 +115,7 @@ if __name__ == '__main__':
         webbrowser.open('http://127.0.0.1:5000')
 
     Timer(1, open_browser).start()    
-    app.run(debug=False)
+    app.run(debug=True)
 
 
    

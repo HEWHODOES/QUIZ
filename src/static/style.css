@@ -1,0 +1,174 @@
+@font-face {
+    font-family: 'Bangers';
+    src: url('../fonts/Bangers-Regular.ttf') format('truetype');
+}
+
+body {
+    font-family: 'Lucida Sans', sans-serif;
+    font-size: clamp(1.2rem, 2vw, 1.875rem);
+    margin: 0;
+    padding-top: 1vh;
+    min-height: 100vh;
+    background-image: url('/static/images/background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.module-container {
+    height: 20vh;
+    padding: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.modulePickerBtn {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: clamp(1.2rem, 2vw, 1.875rem);
+    color: #1b3803;
+    text-shadow: 0.15rem 0.15rem 0.4rem #272727;
+    height: 10vh;
+    width: 15vw;
+    min-width: 150px;
+    box-shadow: 0 0.3rem 0.3rem #e56a1d;
+    border-radius: 50%;
+    border: 2px solid #e56a1d;
+    background: linear-gradient(45deg, #e17614, #fdef47);
+    transition: 
+        transform 0.3s ease-in-out,
+        box-shadow 0.3s ease-in-out,
+        border 0.3s ease-in-out,
+        background 0.3s ease-in-out;
+}
+
+.modulePickerBtn:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0.3rem 0.3rem #fef31e;
+    border: 2.5px solid #fef31e;
+    color: #1b3803;
+    background: linear-gradient(45deg, #fdef47, #e17614);
+}
+
+.question-container {
+    display: none;
+    width: fit-content;
+    max-width: min(90%, 60ch);
+    height: fit-content;
+    margin: 0 auto;
+    padding: 0.7em 0.9em;
+    background: linear-gradient(45deg, #515050, #0f0f0f);
+    color: #e17614;
+    text-shadow: 0.15rem 0.15rem 0.4rem #0a3a49;
+    font-size: clamp(0.6rem, 0.9vw, 1rem);
+    border-radius: 1.25rem;
+}
+
+.answers-container {
+    margin-top: 2vh;
+    display: flex;
+    height: fit-content;
+    flex-direction: column;
+    align-items: center;
+}
+
+.answer-btn {
+    font-family: 'Lucida Sans', sans-serif;
+    font-size: clamp(1rem, 1.6vw, 1.5rem);
+    width: 90%;
+    max-width: 40ch;
+    height: fit-content;
+    margin: 1.5%;
+    padding: 0.7em 1em;
+    line-height: 1.25;
+    border: transparent;
+    border-radius: 0.625rem;
+    color: rgb(1, 36, 1);
+    background: linear-gradient(45deg, #e3aa15, #dd6407);
+    transition: 0.2s;
+}
+
+.answer-btn:hover {
+    transform: scale(0.99);
+    box-shadow: 0 0.25rem 0.5rem #e3aa15;
+    color: #1b3803;
+    background: linear-gradient(45deg, #fdef47, #e17614);
+}
+
+.next-btn {
+    font-family: 'Lucida Sans', sans-serif;
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    width: 12.5rem;
+    height: 4.6875rem;
+    border-radius: 0.3125rem;
+    background: linear-gradient(#dd6407, #e3aa15);
+    color: rgb(3, 48, 5);
+    transition: 0.2s;
+}
+
+.next-btn:hover {
+    transform: scale(0.99);
+    box-shadow: 0 0.25rem 0.5rem #e3aa15;
+    color: #1b3803;
+    background: linear-gradient(45deg, #fdef47, #e17614);
+}
+
+.score-box {
+    position: fixed;
+    bottom: 10vh;
+    right: 2%;
+    width: fit-content;
+    height: auto;
+    padding: 1.5%;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 0.625rem;
+    text-align: center;
+}
+
+.score {
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    color: #e17614;
+}
+
+.points {
+    text-decoration: underline;
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    color: #e17614;
+}
+
+.correct {
+    box-shadow: 0 0 1.875rem rgb(0, 221, 0);
+}
+
+.celebration-text {
+    font-family: 'Bangers', cursive;
+    position: fixed;
+    bottom: 5vh;
+    left: 3vw;
+    font-size: clamp(1rem, 3vw, 1.25rem);
+    font-weight: bold;
+    color: aqua;
+    z-index: 10;
+    animation: vanish 3s ease-out;
+    white-space: nowrap;
+}
+
+@keyframes vanish {
+    0%, 100% { color: #dd6407; }
+    33% { color: #fdef47; }
+    66% { color: #494848; }
+    0% {
+        font-size: clamp(1rem, 3vw, 1.25rem);
+        opacity: 1;
+        transform: rotate(0deg);
+    }
+    60%, 90% {
+        font-size: clamp(3rem, 8vw, 3.75rem);
+        opacity: 1;
+        transform: rotate(360deg);
+    }
+    100% {
+        font-size: clamp(4rem, 10vw, 5.625rem);
+        opacity: 0;
+    }
+}

@@ -52,7 +52,17 @@ buttons.forEach(button => {
     }
         });
         document.getElementById("score").textContent = result.score;
-        
+        console.log("Streak:", result.streak, "Celebrate:", result.celebrate);
+        if (result.celebrate) {
+            if (result.streak === 5) {
+                showCelebration();
+            } else if (result.streak === 10) {
+                showCelebration10();
+            } else if (result.streak === 20) {
+                showCelebration20();
+            }
+        }
+
         if (result.correct) {
             button.textContent = "Bingo!"
 
@@ -110,4 +120,37 @@ function chooseModule() {
     modulePicker = document.querySelectorAll("modulePickerBtn");
 
 
+}
+
+function showCelebration() {
+    const celebrationText = document.createElement("div");
+    celebrationText.className = "celebration-text";
+    celebrationText.textContent = "FÜNFER STREAK!!!";
+    document.body.appendChild(celebrationText);
+
+    setTimeout(() => {
+        celebrationText.remove();
+    }, 3000);
+} 
+
+function showCelebration10() {
+    const celebrationText = document.createElement("div");
+    celebrationText.className = "celebration-text";
+    celebrationText.textContent = "ZEHNER STREAK!!!";
+    document.body.appendChild(celebrationText);
+
+    setTimeout(() => {
+        celebrationText.remove();
+    }, 3000);
+}
+
+function showCelebration20() {
+    const celebrationText = document.createElement("div");
+    celebrationText.className = "celebration-text";
+    celebrationText.textContent = "ZWANZIGER STREAK!!!";
+    document.body.appendChild(celebrationText);
+
+    setTimeout(() => {
+        celebrationText.remove();
+    }, 3000);
 }
