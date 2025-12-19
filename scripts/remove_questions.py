@@ -4,7 +4,7 @@ import os
 def manage_db():
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    db_path = os.path.join(script_dir, "quiz.db")
+    db_path = os.path.join(script_dir,"..", "data", "quiz.db")
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
@@ -16,7 +16,7 @@ def manage_db():
         "Programm beenden? [3]\n")
 
         if action not in ("1", "2", "3"):
-            print("Du kannst nur 1 oder 2 angeben!")
+            print("Du kannst nur 1, 2 oder 3 angeben!")
             continue
 
         if action == "1":

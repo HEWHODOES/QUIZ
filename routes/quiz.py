@@ -1,19 +1,13 @@
-import webbrowser
-from threading import Timer
-import sqlite3
-import os
+from flask import Blueprint, jsonify, request, render_template, session
+from db_connection import get_questions_db
 import random
-from flask import Flask, jsonify, request, render_template, session
 
-app = Flask(__name__)
-app.secret_key = "easy_learn"
+quiz_bp = Blueprint("quiz", __name__)
 
 asked_questions = []
 
 def get_module():
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    db_path = os.path.join(script_dir,  "..", "data", "quiz.db")
-    conn = sqlite3.connect(db_path)
+    conn = get_questions_db()
     cursor = conn.cursor()
 
     cursor.execute("SELECT DISTINCT module FROM questions", ())
@@ -22,12 +16,10 @@ def get_module():
 
     modules_to_pick_from = [m[0] for m in modules_found]
     return modules_to_pick_from
-    
+
 def get_random_question(module):
 
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    db_path = os.path.join(script_dir, "..", "data", "quiz.db")
-    conn = sqlite3.connect(db_path)
+    conn = get_questions_db()
     cursor = conn.cursor()
     
     cursor.execute("SELECT * FROM questions WHERE module = ?", (module,))
@@ -49,28 +41,26 @@ def get_random_question(module):
     "answer_c": result[5],
     "correct": result[6]
     }
-    
-@app.route('/')
+
+@quiz_bp.route('/')
 def start():
     session["score"] = 0
     session["streak"] = 0
     modules = get_module()
     return render_template("quiz.html", modules=modules)
 
-@app.route("/reset_questions", methods=["POST"])
+@quiz_bp.route("/reset_questions", methods=["POST"])
 def reset_questions():
     asked_questions.clear()
     return jsonify({"success": True})
 
-@app.route("/check_answer", methods=["POST"])
+@quiz_bp.route("/check_answer", methods=["POST"])
 def check_answer():
     data = request.get_json()
     question_id = data.get("question_id")
     selected_answer = data.get("selected_answer")
 
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    db_path = os.path.join(script_dir, "..", "data", "quiz.db")
-    conn = sqlite3.connect(db_path)
+    conn = get_questions_db()
     cursor = conn.cursor()
 
     cursor.execute("SELECT correct FROM questions WHERE id= ?", (question_id,))
@@ -103,25 +93,9 @@ def check_answer():
         "celebrate": show_celebration
         })
 
-@app.route("/get_question/<module>")
+@quiz_bp.route("/get_question/<module>")
 def get_question(module):
     question = get_random_question(module)
     if question is None:
         return jsonify({"error": "No questions found"}), 404
     return jsonify(question)
-
-if __name__ == '__main__':
-    def open_browser():
-        webbrowser.open('http://127.0.0.1:5000')
-
-    Timer(1, open_browser).start()    
-    app.run(debug=True)
-
-
-   
-        
-
-
-
-
-

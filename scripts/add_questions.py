@@ -4,7 +4,7 @@ import os
 def new_question():
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    db_path = os.path.join(script_dir, "quiz.db")
+    db_path = os.path.join(script_dir,"..", "data", "quiz.db")
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     cursor.execute("""CREATE TABLE IF NOT EXISTS questions(
