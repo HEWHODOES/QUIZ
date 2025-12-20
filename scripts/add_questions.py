@@ -1,32 +1,59 @@
-import sqlite3
+
 import os
+import sys
+
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+from db_connection import get_questions_db
+
+conn = get_questions_db()
+cursor = conn.cursor()
 
 def new_question():
-
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    db_path = os.path.join(script_dir,"..", "data", "quiz.db")
-    conn = sqlite3.connect(db_path)
-    cursor = conn.cursor()
-    cursor.execute("""CREATE TABLE IF NOT EXISTS questions(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        module TEXT NOT NULL,
-        text TEXT NOT NULL,
-        answer_a TEXT NOT NULL,
-        answer_b TEXT NOT NULL,
-        answer_c TEXT NOT NULL,
-        correct TEXT NOT NULL                                                                                 
-    )""")
-
 
     add_more = ""
     while add_more.lower() != "nein":
         
+        cursor.execute("SELECT id, name FROM categories")
+        categories = cursor.fetchall()
 
-        module = input("Gib hier ein, zu welchem Themenbereich du ein Quiz erstellen möchtest: ")
-        text = input("Gib hier die Frage ein: ")
-        answer_a = input("Gib hier Antwort A ein: ")
-        answer_b = input("Gib jetzt Antwort B ein: ")
-        answer_c = input("Und nun noch Antwort C: ")
+        if categories:
+            print("\nVorhandene Kategorien:")
+            for cat in categories:
+                print(f"[{cat[0]}] {cat[1]}")
+
+        category_choice = input("Kategorie-ID oder neue Kategorie eingeben: ")        
+
+        if category_choice.isdigit():
+            category_id = int(category_choice)
+        else:
+            cursor.execute("INSERT INTO categories (name) VALUES (?)", (category_choice,))
+            conn.commit()
+            category_id = cursor.lastrowid
+            print(f"Neue Kategorie '{category_choice}' erstellt!")
+
+        cursor.execute("SELECT id, name FROM modules WHERE category_id = ?", (category_id,))    
+        modules = cursor.fetchall()
+
+        if modules:
+            print("\nVorhandene Module:")
+            for mod in modules:
+                print(f"[{mod[0]}] {mod[1]}")
+
+        module_choice = input("\nModul_ID oder Namen für neues Modul eingeben:") 
+        
+        if module_choice.isdigit():
+            module_id = int(module_choice)
+        else:
+            cursor.execute("INSERT INTO modules (category_id, name) VALUES (?, ?)", (category_id, module_choice))
+            conn.commit()
+            module_id = cursor.lastrowid
+            print(f"Neues Modul '{module_choice}' erstellt!")
+
+        print("\n=== Frage erstellen ===")
+        text = input("Frage: ")
+        answer_a = input("Antwort A: ")            
+        answer_b = input("Antwort B: ")
+        answer_c = input("Antwort C: ")
 
         correct = "Z"
         while correct.lower() not in "abc":
@@ -35,20 +62,21 @@ def new_question():
             if correct.lower() not in ("abc"):
                 print("Du kannst nur A, B oder C als korrekte Antwort angeben!")
 
+        cursor.execute("""INSERT INTO questions (module_id, text, answer_a, answer_b, answer_c, correct) 
+                       VALUES (?, ?, ?, ?, ?, ?)
+                       """, (module_id, text, answer_a, answer_b, answer_c, correct.lower()))
+
+        conn.commit()
+        print("Frage gespeichert!")
+
         add_more = ""
-        while add_more.lower() != "ja" and add_more.lower() != "nein":            
+        while add_more.lower() not in ("ja", "nein"):            
             add_more = input("Willst du noch mehr eingeben? (Ja/Nein): ")
 
-            if add_more.lower() != "ja" and add_more.lower() != "nein":
-                print("Du musst entweder ja oder nein eingeben!")
-
-            if add_more.lower() == "nein":
-                break
-
-        cursor.execute("""INSERT INTO questions (module, text, answer_a, answer_b, answer_c, correct) 
-                       VALUES (?, ?, ?, ?, ?, ?)""", (module, text, answer_a, answer_b, answer_c, correct))
-    conn.commit()
+        
+    
     conn.close()
+    print("\nFertig!")
 
 new_question()            
 

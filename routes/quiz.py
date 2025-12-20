@@ -6,23 +6,11 @@ quiz_bp = Blueprint("quiz", __name__)
 
 asked_questions = []
 
-def get_module():
-    conn = get_questions_db()
-    cursor = conn.cursor()
-
-    cursor.execute("SELECT DISTINCT module FROM questions", ())
-    modules_found = cursor.fetchall()
-    conn.close()
-
-    modules_to_pick_from = [m[0] for m in modules_found]
-    return modules_to_pick_from
-
-def get_random_question(module):
+def get_random_question(module_id):
 
     conn = get_questions_db()
     cursor = conn.cursor()
-    
-    cursor.execute("SELECT * FROM questions WHERE module = ?", (module,))
+    cursor.execute("SELECT * FROM questions WHERE module_id = ?", (module_id,))
     all_questions = cursor.fetchall()
     conn.close()
 
@@ -42,12 +30,36 @@ def get_random_question(module):
     "correct": result[6]
     }
 
+@quiz_bp.route('/get_categories')
+def get_categories():
+    conn = get_questions_db()
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, name FROM categories")
+    categories = cursor.fetchall()
+    conn.close()
+    return jsonify([{"id": cat[0], "name": cat[1]} for cat in categories])
+
+@quiz_bp.route('/get_modules/<int:category_id>')
+def get_modules(category_id):
+    conn = get_questions_db()
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, name FROM modules WHERE category_id = ?", (category_id,))
+    modules = cursor.fetchall()
+    conn.close()
+    return jsonify([{"id": mod[0], "name": mod[1]} for mod in modules])
+
+@quiz_bp.route("/get_question/<int:module_id>")
+def get_question(module_id):
+    question = get_random_question(module_id)
+    if question is None:
+        return jsonify({"error": "No questions found"}), 404
+    return jsonify(question)
+
 @quiz_bp.route('/')
 def start():
     session["score"] = 0
     session["streak"] = 0
-    modules = get_module()
-    return render_template("quiz.html", modules=modules)
+    return render_template("quiz.html")
 
 @quiz_bp.route("/reset_questions", methods=["POST"])
 def reset_questions():
@@ -92,10 +104,3 @@ def check_answer():
         "streak": session["streak"],
         "celebrate": show_celebration
         })
-
-@quiz_bp.route("/get_question/<module>")
-def get_question(module):
-    question = get_random_question(module)
-    if question is None:
-        return jsonify({"error": "No questions found"}), 404
-    return jsonify(question)
