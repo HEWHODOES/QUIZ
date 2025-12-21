@@ -20,7 +20,7 @@ cursor.execute("""
                id INTEGER PRIMARY KEY AUTOINCREMENT,
                category_id INTEGER NOT NULL,
                name TEXT NOT NULL,
-               FOREIGN KEY (category_id) REFERENCES categories(id)
+               FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
     )
 """)
 
@@ -33,7 +33,7 @@ cursor.execute("""
                answer_b TEXT NOT NULL,
                answer_c TEXT NOT NULL,
                correct TEXT NOT NULL,
-               FOREIGN KEY (module_id) REFERENCES modules(id)
+               FOREIGN KEY (module_id) REFERENCES modules(id) ON DELETE CASCADE
             )    
         """)
 
