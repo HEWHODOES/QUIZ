@@ -1,0 +1,68 @@
+
+from flask import Blueprint, request, jsonify, session
+import sys
+import os
+
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+from db_connection import get_users_db
+
+auth_bp = Blueprint('auth', __name__)
+
+@auth_bp.route('/register', methods=['POST'])
+def register():
+    data = request.get_json()
+    username = data.get('username')
+
+    if not username:
+        return jsonify({"error": "Username fehlt!"}), 400
+    
+    conn = get_users_db()
+    cursor = conn.cursor()
+
+    try:
+        cursor.execute("INSERT INTO users (username) VALUES (?)", (username,))
+        conn.commit()
+        user_id = cursor.lastrowid
+        conn.close()
+
+        session['user_id'] = user_id
+        session['username'] = username
+
+        return jsonify({"success": True, "username": username})
+    except:
+        conn.close()
+        return jsonify({"error": "Username bereits vergeben!"}), 400
+    
+@auth_bp.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    username = data.get('username')
+
+    if not username:
+        return jsonify({"error": "Username fehlt!"}), 400
+    
+    conn = get_users_db()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT id, username FROM users WHERE username = ?," (username,))
+    user = cursor.fetchone()
+    conn.close()
+
+    if not user:
+        return jsonify({"error": "User nicht gefunden!"}), 404
+
+    session['user_id'] = user[0]
+    session['username'] = user[1]
+
+    return jsonify({"success": True, "username": user[1]})
+
+@auth_bp.route('/logout', methods=['POST'])
+def logout():
+    session.clear()
+    return jsonify({"success": True})
+
+@auth_bp.route('/check_session', methods=['GET'])
+def check_session():
+    if 'user_id' in session:
+        return jsonify({"logged_in": True, "username": session["username"]})
+    return jsonify({"logged_in": False})

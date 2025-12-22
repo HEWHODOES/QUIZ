@@ -8,6 +8,13 @@
 
 </head>
 <body>
+    <div class="header">
+        <div id="user-info">
+            <span id="username-display" style="display: none;"></span>
+            <button id="login-btn" onclick="window.location.href='/login'">Login</button>
+            <button id="logout-btn" style="display: none;" onclick="logout()">Logout</button>
+        </div>
+    </div>
     <div class="category-container"></div>
     <div class="module-container style=display: none"></div>
             
@@ -25,7 +32,7 @@
     </div>
 
     
-    
+    <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
     <script type="module" src="/static/js/main.js"></script>
 </body>
 </html>

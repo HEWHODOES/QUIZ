@@ -39,4 +39,4 @@ cursor.execute("""
 
 conn.commit()
 conn.close()
-print("Datenbank erstellt!")
+print("\nDatenbank erstellt!")

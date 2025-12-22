@@ -5,10 +5,10 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 from db_connection import get_questions_db
 
-def remove_data():
+conn = get_questions_db()
+cursor = conn.cursor()
 
-    conn = get_questions_db()
-    cursor = conn.cursor()
+def remove_data():
 
     print("\nDieses Programm erlaubt dir ganze Kategorien, ganze Module\noder bestimmte Fragen aus einem Modul\naus der Quiz DB zu entfernen.\n")
     
@@ -107,6 +107,4 @@ def remove_data():
             print("Verbindung zur Datenbank geschlossen...")
             break                  
             
-            
-
 remove_data()

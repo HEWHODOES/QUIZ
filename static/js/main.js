@@ -2,6 +2,17 @@ import { loadNewQuestion } from "./quiz.js";
 import { showCelebration, showCelebration10, showCelebration20 } from "./celebration.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
+
+    const sessionResponse = await fetch('/check_session');
+    const sessionData = await sessionResponse.json();
+
+    if (sessionData.logged_in) {
+        document.getElementById('username-display').textContent = sessionData.username;
+        document.getElementById('username-display').style.display = 'inline';
+        document.getElementById('login-btn').style.display = 'none';
+        document.getElementById('logout-btn').style.display = 'inline';
+    }
+
     const categoryContainer = document.querySelector('.category-container');
     const moduleContainer = document.querySelector('.module-container');
     const buttons = document.querySelectorAll(".answer-btn");
