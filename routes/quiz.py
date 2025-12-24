@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request, render_template, session
 from db_connection import get_questions_db
 import random
+from services.streak_service import update_streak, get_user_streaks
 
 quiz_bp = Blueprint("quiz", __name__)
 
@@ -86,14 +87,24 @@ def check_answer():
     is_correct = (selected_answer.lower() == correct_answer.lower())
     if "score" not in session:
         session["score"] = 0
-    if "streak" not in session:
-        session["streak"] = 0
 
     if is_correct:
         session["score"] += 1   
-        session["streak"] += 1
+    
+    if "user_id" in session:
+        streak_data = update_streak(session["user_id"], is_correct)
+        current_streak = streak_data["current_streak"]
     else:
-        session["streak"] = 0
+        if "streak" not in session:
+            session["streak"] = 0
+
+        if is_correct:
+            session["streak"] += 1
+        else:
+            session["streak"] = 0
+
+        current_streak = session["streak"]           
+
 
     show_celebration = (session["streak"] in [5, 10, 20])
 

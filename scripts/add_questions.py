@@ -16,12 +16,16 @@ def new_question():
         cursor.execute("SELECT id, name FROM categories")
         categories = cursor.fetchall()
 
+        if not categories:
+            print("\nDie Datenbank ist leer!\n")
+            category_choice = input("Kategorie angeben: ")
+
         if categories:
             print("\nVorhandene Kategorien:")
             for cat in categories:
                 print(f"[{cat[0]}] {cat[1]}")
 
-        category_choice = input("Kategorie-ID oder neue Kategorie eingeben: ")        
+            category_choice = input("Kategorie-ID oder neue Kategorie eingeben: ")        
 
         if category_choice.isdigit():
             category_id = int(category_choice)
