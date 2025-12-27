@@ -5,6 +5,7 @@ import os
 
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 from db_connection import get_users_db
+from services.streak_service import reset_current_streak
 
 auth_bp = Blueprint('auth', __name__)
 
@@ -44,7 +45,7 @@ def login():
     conn = get_users_db()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT id, username FROM users WHERE username = ?," (username,))
+    cursor.execute("SELECT id, username FROM users WHERE username = ?", (username,))
     user = cursor.fetchone()
     conn.close()
 
@@ -53,6 +54,7 @@ def login():
 
     session['user_id'] = user[0]
     session['username'] = user[1]
+    reset_current_streak(user[0])
 
     return jsonify({"success": True, "username": user[1]})
 

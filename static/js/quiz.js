@@ -13,8 +13,12 @@ async function loadNewQuestion(buttons, currentModule) {
     const response = await fetch(`/get_question/${currentModule}`);
     const question = await response.json();
 
-    if (question.error) {
+    console.log('Received question:', question);
+
+    if (!question.id) {
         document.querySelector("h1").textContent = "Modul abgeschlossen! Wähle ein neues oder mach 'ne Pause.";
+        document.querySelector('.question-container').style.display = 'none';
+        document.querySelector('.score-box').style.display = 'none';
         buttons.forEach(btn => btn.style.display = "none");
         document.querySelectorAll('.modulePickerBtn').forEach(btn => btn.style.display = "inline-block");
         document.querySelector('.module-container').style.display = '';

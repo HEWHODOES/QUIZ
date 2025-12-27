@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request, render_template, session
 from db_connection import get_questions_db
 import random
 from services.streak_service import update_streak, get_user_streaks
+from services.progress_service import mark_module_completed, get_completed_modules
 
 quiz_bp = Blueprint("quiz", __name__)
 
@@ -44,17 +45,49 @@ def get_categories():
 def get_modules(category_id):
     conn = get_questions_db()
     cursor = conn.cursor()
+
     cursor.execute("SELECT id, name FROM modules WHERE category_id = ?", (category_id,))
     modules = cursor.fetchall()
     conn.close()
-    return jsonify([{"id": mod[0], "name": mod[1]} for mod in modules])
+
+    if 'user_id' in session:
+        completed = get_completed_modules(session['user_id'], 'module_id')
+    else:
+        completed = []
+
+    result = []
+    for mod in modules:
+        result.append({
+            "id": mod[0],
+            "name": mod[1],
+            "completed": mod[0] in completed
+        })
+    return jsonify(result)        
 
 @quiz_bp.route("/get_question/<int:module_id>")
 def get_question(module_id):
+
+    if "current_module" not in session or session["current_module"] != module_id:
+        conn = get_questions_db()
+        cursor = conn.cursor()
+        cursor.execute("SELECT COUNT(*) FROM questions WHERE module_id = ?", (module_id,))
+        total = cursor.fetchone()[0]
+        conn.close()
+
+        session["current_module"] = module_id
+        session["total_questions"] = total
+        session["module_questions_correct"] = 0
+
     question = get_random_question(module_id)
+    
     if question is None:
-        return jsonify({"error": "No questions found"}), 404
-    return jsonify(question)
+        if session['module_questions_correct'] == session.get("total_questions", 0):
+            if "user_id" in session:
+                mark_module_completed(session["user_id"], module_id)
+
+        return jsonify({"completed": True}), 200
+
+    return jsonify(question)    
 
 @quiz_bp.route('/')
 def start():
@@ -94,6 +127,7 @@ def check_answer():
     if "user_id" in session:
         streak_data = update_streak(session["user_id"], is_correct)
         current_streak = streak_data["current_streak"]
+
     else:
         if "streak" not in session:
             session["streak"] = 0
@@ -106,12 +140,12 @@ def check_answer():
         current_streak = session["streak"]           
 
 
-    show_celebration = (session["streak"] in [5, 10, 20])
+    show_celebration = (current_streak in [5, 10, 20])
 
     return jsonify({
         "correct": is_correct, 
         "score": session["score"], 
         "correct_answer": correct_answer.lower(),
-        "streak": session["streak"],
+        "streak": current_streak,
         "celebrate": show_celebration
         })

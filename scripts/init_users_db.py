@@ -15,6 +15,27 @@ cursor.execute("""CREATE TABLE IF NOT EXISTS users (
     ) 
 """)
 
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS streaks (
+               id INTEGER PRIMARY KEY AUTOINCREMENT,
+               user_id INTEGER NOT NULL,
+               current_streak INTEGER DEFAULT 0,
+               max_streak INTEGER DEFAULT 0,
+               FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    )
+""")
+
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS progress (
+               id INTEGER PRIMARY KEY AUTOINCREMENT,
+               user_id INTEGER NOT NULL,
+               module_id INTEGER NOT NULL,
+               completed_at TEXT DEFAULT (datetime('now')),
+               FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+               UNIQUE(user_id, module_id)
+    )
+""")
+
 conn.commit()
 conn.close()
 print("users.db erstellt!")

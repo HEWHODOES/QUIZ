@@ -3,11 +3,11 @@ import sys
 import os
 
 sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
-from db_connection import get_streaks_db
+from db_connection import get_users_db
 
 def get_user_streaks(user_id):
 
-    conn = get_streaks_db()
+    conn = get_users_db()
     cursor = conn.cursor()
 
     cursor.execute("SELECT current_streak, max_streak FROM streaks WHERE user_id = ?", (user_id,))
@@ -22,7 +22,7 @@ def get_user_streaks(user_id):
     
 def create_streak_entry(user_id):
 
-    conn = get_streaks_db()
+    conn = get_users_db()
     cursor = conn.cursor()
 
     cursor.execute("INSERT INTO streaks (user_id, current_streak, max_streak) VALUES (?, 0, 0)", (user_id,))
@@ -31,7 +31,7 @@ def create_streak_entry(user_id):
 
 def update_streak(user_id, is_correct):
     
-    conn = get_streaks_db()
+    conn = get_users_db()
     cursor = conn.cursor()
 
     cursor.execute("SELECT current_streak, max_streak FROM streaks WHERE user_id = ?", (user_id,))
@@ -58,4 +58,14 @@ def update_streak(user_id, is_correct):
     conn.commit()
     conn.close() 
 
-    return {"current_streak": current, "max_streak": max_streak}                   
+    return {"current_streak": current, "max_streak": max_streak}
+
+def reset_current_streak(user_id):
+    
+    conn = get_users_db()
+    cursor = conn.cursor()
+
+    cursor.execute("UPDATE streaks SET current_streak = 0 WHERE user_id = ?", (user_id,))
+    
+    conn.commit()
+    conn.close()                   
