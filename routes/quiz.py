@@ -51,7 +51,7 @@ def get_modules(category_id):
     conn.close()
 
     if 'user_id' in session:
-        completed = get_completed_modules(session['user_id'], 'module_id')
+        completed = get_completed_modules(session['user_id'])
     else:
         completed = []
 
@@ -68,6 +68,7 @@ def get_modules(category_id):
 def get_question(module_id):
 
     if "current_module" not in session or session["current_module"] != module_id:
+        asked_questions.clear()
         conn = get_questions_db()
         cursor = conn.cursor()
         cursor.execute("SELECT COUNT(*) FROM questions WHERE module_id = ?", (module_id,))
@@ -82,6 +83,7 @@ def get_question(module_id):
     
     if question is None:
         if session['module_questions_correct'] == session.get("total_questions", 0):
+            print(f"DEBUG: All correct! User: {session.get('user_id')}, Module: {module_id}")
             if "user_id" in session:
                 mark_module_completed(session["user_id"], module_id)
 

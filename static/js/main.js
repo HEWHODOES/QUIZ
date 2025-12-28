@@ -42,8 +42,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             modules.forEach(module => {
                 const moduleBtn = document.createElement('button');
                 if (module.completed) {
-                    moduleBtn.textContent = `${module.name} ✓`;
-                    moduleBtn.style.backgroundColor = '#d4edda'; // Grün für abgeschlossene Module
+                    moduleBtn.textContent = module.name + ' ✓';
+                    moduleBtn.style.backgroundColor = '#28a745';
                 } 
                 else {
                 moduleBtn.textContent = module.name;

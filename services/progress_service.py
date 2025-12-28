@@ -20,7 +20,7 @@ def mark_module_completed(user_id, module_id):
         conn.close()
         return False
     
-def get_completed_modules(user_id, module_id):
+def get_completed_modules(user_id):
 
     conn = get_users_db()
     cursor = conn.cursor()

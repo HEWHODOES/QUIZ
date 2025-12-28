@@ -16,14 +16,14 @@ async function loadNewQuestion(buttons, currentModule) {
     console.log('Received question:', question);
 
     if (!question.id) {
-        document.querySelector("h1").textContent = "Modul abgeschlossen! Wähle ein neues oder mach 'ne Pause.";
-        document.querySelector('.question-container').style.display = 'none';
-        document.querySelector('.score-box').style.display = 'none';
-        buttons.forEach(btn => btn.style.display = "none");
-        document.querySelectorAll('.modulePickerBtn').forEach(btn => btn.style.display = "inline-block");
-        document.querySelector('.module-container').style.display = '';
-        return;
-    }
+            document.querySelector("h1").textContent = "Modul abgeschlossen! Wähle ein neues oder mach 'ne Pause.";
+            document.querySelector('.question-container').style.display = 'none';
+            document.querySelector('.score-box').style.display = 'none';
+            buttons.forEach(btn => btn.style.display = "none");
+            document.querySelectorAll('.modulePickerBtn').forEach(btn => btn.style.display = ""); // sichtbar, behält Grid/Flex
+            document.querySelector('.module-container').style.display = "grid"; // Grid-Layout wieder aktiv
+            return;
+}
 
     document.querySelector("h1").textContent = question.text;
     buttons[0].textContent = question.answer_a;

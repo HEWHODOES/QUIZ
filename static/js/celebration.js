@@ -1,37 +1,30 @@
 
 
 function showCelebration() {
-    const celebrationText = document.createElement("div");
-    celebrationText.className = "celebration-text";
-    celebrationText.textContent = "LET'S GO! 5 IN FOLGE!";
-    document.body.appendChild(celebrationText);
-    setTimeout(() => celebrationText.remove(), 3000);
+    const gifBox = document.querySelector('.gif-box');
+    gifBox.style.backgroundImage = "url('/static/gifs/streak5.gif')";
+
+    setTimeout(() => {
+        gifBox.style.backgroundImage = "url('/static/gifs/neutral.gif')";
+    }, 6500); 
 }
 
 function showCelebration10() {
-    const celebrationText = document.createElement("div");
-    celebrationText.className = "celebration-text10";
-    celebrationText.textContent = "WEITER SO! DAMN!";
-    document.body.appendChild(celebrationText);
-
-    const flashDiv = document.createElement("div");
-    flashDiv.className = "rainbow-background";
-    document.body.appendChild(flashDiv);
-
-    setTimeout(() => { celebrationText.remove(); flashDiv.remove(); }, 3000);
+    const gifBox = document.querySelector('.gif-box');
+    gifBox.style.backgroundImage = "url('/static/gifs/streak10.gif')"; 
+    
+    setTimeout(() => {
+        gifBox.style.backgroundImage = "url('/static/gifs/neutral.gif')";
+    }, 7600); 
 }
 
 function showCelebration20() {
-    const celebrationText = document.createElement("div");
-    celebrationText.className = "celebration-text";
-    celebrationText.textContent = "20 AM STÜCK! DU BIST ES!";
-    document.body.appendChild(celebrationText);
+    const gifBox = document.querySelector('.gif-box');
+    gifBox.style.backgroundImage = "url('/static/gifs/streak20.gif')"; 
 
-    const flameDiv = document.createElement("div");
-    flameDiv.className = "flame-border";
-    document.body.appendChild(flameDiv);
-
-    setTimeout(() => { celebrationText.remove(); flameDiv.remove(); }, 3000);
+    setTimeout(() => {
+        gifBox.style.backgroundImage = "url('/static/gifs/neutral.gif')";
+    }, 9000); 
 }
 
 export { showCelebration, showCelebration10, showCelebration20 };
