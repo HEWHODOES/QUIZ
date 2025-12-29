@@ -3,6 +3,27 @@ import { showCelebration, showCelebration10, showCelebration20 } from "./celebra
 
 document.addEventListener("DOMContentLoaded", async () => {
 
+    document.getElementById('back_to_gategories').addEventListener('click', () => {
+        currentModuleId = null;
+        const nextBtn = document.querySelector(".next-btn");
+        if (nextBtn) nextBtn.remove();
+
+        document.querySelectorAll('.answer-btn').forEach(btn => {
+            btn.style.display = "none";
+            btn.classList.remove("correct");
+            btn.disabled = false;
+            btn.style.backgroundColor = "";
+        })
+        
+        document.getElementById('module-banner').style.display = 'none';
+        document.querySelector('.section-title').style.display = 'block';
+        moduleContainer.style.display = 'none';
+        categoryContainer.style.display = 'grid';
+        document.querySelector('.question-container').style.display = 'none';
+        document.querySelector('.score-box').style.display = 'none';
+        document.querySelectorAll('.answer-btn').forEach(btn => btn.style.display = 'none');
+    });
+
     const sessionResponse = await fetch('/check_session');
     const sessionData = await sessionResponse.json();
 
@@ -24,6 +45,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const categories = await categoriesResponse.json();
     
     categories.forEach(category => {
+        
         const btn = document.createElement('button');
         btn.textContent = category.name;
         btn.className = 'categoryPickerBtn';
@@ -32,8 +54,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         
         // === STEP 2: Category Click → Module laden ===
         btn.addEventListener('click', async () => {
+            document.getElementById('module-banner').style.display = 'block';
+            document.getElementById('module-name').textContent = category.name;
+            moduleContainer.dataset.categoryName = category.name;
+            document.querySelector('.section-title').style.display = 'none';
             categoryContainer.style.display = 'none';
-            moduleContainer.style.display = 'block';
+            moduleContainer.style.display = 'grid';
             moduleContainer.innerHTML = '';  // Leeren
             
             const modulesResponse = await fetch(`/get_modules/${category.id}`);
@@ -54,9 +80,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                 
                 // === STEP 3: Modul Click → Quiz starten ===
                 moduleBtn.addEventListener('click', async () => {
+                    document.getElementById('module-banner').style.display = 'block';
+                    document.getElementById('module-name').textContent = module.name;
+                    document.querySelector('.section-title').style.display = 'none';
                     await fetch("/reset_questions", { method: "POST" });
                     currentModuleId = module.id;
-                    
+                            
                     moduleContainer.style.display = 'none';
                     document.querySelector('.score-box').style.display = "";
                     buttons.forEach(btn => btn.style.display = "");

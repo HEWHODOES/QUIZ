@@ -54,7 +54,15 @@ def new_question():
             print(f"Neues Modul '{module_choice}' erstellt!")
 
         print("\n=== Frage erstellen ===")
-        text = input("Frage: ")
+        print("Frage eingeben (leere Zeile zum Beenden): ")
+        lines = []
+        while True:
+            line = input()
+            if line == "":
+                break
+            lines.append(line)
+        text = "\n".join(lines)
+        
         answer_a = input("Antwort A: ")            
         answer_b = input("Antwort B: ")
         answer_c = input("Antwort C: ")

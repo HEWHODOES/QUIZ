@@ -11,6 +11,7 @@ cursor = conn.cursor()
 cursor.execute("""CREATE TABLE IF NOT EXISTS users (
                id INTEGER PRIMARY KEY AUTOINCREMENT,
                username TEXT NOT NULL UNIQUE,
+               password_hash TEXT NOT NULL,
                created_at TEXT DEFAULT (datetime('now'))
     ) 
 """)
@@ -33,6 +34,18 @@ cursor.execute("""
                completed_at TEXT DEFAULT (datetime('now')),
                FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
                UNIQUE(user_id, module_id)
+    )
+""")
+
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS question_progress(
+               id INTEGER PRIMARY KEY AUTOINCREMENT,
+               user_id INTEGER NOT NULL,
+               question_id INTEGER NOT NULL,
+               correct BOOLEAN NOT NULL,
+               answered_at TEXT DEFAULT (datetime('now')),
+               FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+               UNIQUE(user_id, question_id)
     )
 """)
 

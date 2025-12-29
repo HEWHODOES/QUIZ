@@ -1,5 +1,6 @@
 
 from flask import Blueprint, request, jsonify, session
+from werkzeug.security import generate_password_hash
 import sys
 import os
 
@@ -13,15 +14,20 @@ auth_bp = Blueprint('auth', __name__)
 def register():
     data = request.get_json()
     username = data.get('username')
+    password = data.get('password')
 
-    if not username:
-        return jsonify({"error": "Username fehlt!"}), 400
+    if not username or not password:
+        return jsonify({"error": "Username und Passwort benötigt!!"}), 400
+    
+    password_hash = generate_password_hash(password)
     
     conn = get_users_db()
     cursor = conn.cursor()
 
     try:
-        cursor.execute("INSERT INTO users (username) VALUES (?)", (username,))
+        cursor.execute("INSERT INTO users (username, password_hash) VALUES (?, ?)", 
+                       (username, password_hash)
+                       )
         conn.commit()
         user_id = cursor.lastrowid
         conn.close()
@@ -38,25 +44,30 @@ def register():
 def login():
     data = request.get_json()
     username = data.get('username')
+    password = data.get('password')
 
-    if not username:
-        return jsonify({"error": "Username fehlt!"}), 400
+    if not username or not password:
+        return jsonify({"error": "Username und Passwort benötigt!"}), 400
     
     conn = get_users_db()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT id, username FROM users WHERE username = ?", (username,))
+    cursor.execute("SELECT id, username, password_hash FROM users WHERE username = ?", 
+                   (username,)
+                   )
     user = cursor.fetchone()
     conn.close()
 
     if not user:
         return jsonify({"error": "User nicht gefunden!"}), 404
+    
+    user_id, user_name, password_hash = user
 
-    session['user_id'] = user[0]
-    session['username'] = user[1]
-    reset_current_streak(user[0])
+    session['user_id'] = user_id
+    session['username'] = user_name
+    reset_current_streak(user_id)
 
-    return jsonify({"success": True, "username": user[1]})
+    return jsonify({"success": True, "username": user_name})
 
 @auth_bp.route('/logout', methods=['POST'])
 def logout():

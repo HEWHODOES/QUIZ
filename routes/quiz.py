@@ -82,12 +82,17 @@ def get_question(module_id):
     question = get_random_question(module_id)
     
     if question is None:
-        if session['module_questions_correct'] == session.get("total_questions", 0):
-            print(f"DEBUG: All correct! User: {session.get('user_id')}, Module: {module_id}")
-            if "user_id" in session:
+        total = session.get("total_questions", 0)
+        correct = session.get("module_questions_correct", 0)
+
+        if "user_id" in session:
                 mark_module_completed(session["user_id"], module_id)
 
-        return jsonify({"completed": True}), 200
+        return jsonify({
+            "completed": True,
+            "total_questions": total,
+            "correct_answers": correct
+        }), 200
 
     return jsonify(question)    
 
@@ -124,8 +129,13 @@ def check_answer():
         session["score"] = 0
 
     if is_correct:
-        session["score"] += 1   
-    
+        session["score"] += 1
+        if "module_questions_correct" in session:
+            session["module_questions_correct"] += 1   
+        else:
+            session["module_questions_correct"] = 1     
+
+
     if "user_id" in session:
         streak_data = update_streak(session["user_id"], is_correct)
         current_streak = streak_data["current_streak"]

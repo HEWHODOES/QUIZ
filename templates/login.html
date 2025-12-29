@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Login DevMind</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="login-container">
-        <h1>Quiz App</h1>
+        <h1>DevMind</h1>
         
         <div id="login-form">
             <h2>Login</h2>
             <input type="text" id="login-username" placeholder="Username">
+            <input type="password" id="login-password" placeholder="Passwort">
             <button onclick="login()">Login</button>
             <p>Noch kein Account? <a href="#" onclick="showRegister()">Registrieren</a></p>
         </div>
@@ -20,6 +21,7 @@
         <div id="register-form" style="display: none;">
             <h2>Registrieren</h2>
             <input type="text" id="register-username" placeholder="Username">
+            <input type="password" id="register-password" placeholder="Passwort">
             <button onclick="register()">Registrieren</button>
             <p>Schon Account? <a href="#" onclick="showLogin()">Login</a></p>
         </div>

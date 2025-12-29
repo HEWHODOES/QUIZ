@@ -16,16 +16,21 @@ async function loadNewQuestion(buttons, currentModule) {
     console.log('Received question:', question);
 
     if (!question.id) {
-            document.querySelector("h1").textContent = "Modul abgeschlossen! Wähle ein neues oder mach 'ne Pause.";
+
+            const moduleContainer = document.querySelector('.module-container');
+            const categoryName = moduleContainer.dataset.categoryName;
+
+            document.getElementById('module-name').textContent = categoryName;
+
             document.querySelector('.question-container').style.display = 'none';
             document.querySelector('.score-box').style.display = 'none';
             buttons.forEach(btn => btn.style.display = "none");
-            document.querySelectorAll('.modulePickerBtn').forEach(btn => btn.style.display = ""); // sichtbar, behält Grid/Flex
-            document.querySelector('.module-container').style.display = "grid"; // Grid-Layout wieder aktiv
+            document.querySelectorAll('.modulePickerBtn').forEach(btn => btn.style.display = ""); 
+            document.querySelector('.module-container').style.display = "grid"; 
             return;
 }
 
-    document.querySelector("h1").textContent = question.text;
+    document.getElementById("question-text").textContent = question.text;
     buttons[0].textContent = question.answer_a;
     buttons[0].dataset.questionId = question.id;
     buttons[1].textContent = question.answer_b;

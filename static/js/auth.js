@@ -13,16 +13,17 @@ function showLogin() {
 
 async function register() {
     const username = document.getElementById('register-username').value;
+    const password = document.getElementById('register-password').value;
 
-    if (!username) {
-        document.getElementById('message').textContent = "Bitte Usernamen eingeben!";
+    if (!username || !password) {
+        document.getElementById('message').textContent = "Bitte Usernamen und Passwort eingeben!";
         return
     }
 
     const response = await fetch('/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({username: username})
+        body: JSON.stringify({username: username, password})
     });
 
     const data = await response.json();
@@ -36,16 +37,17 @@ async function register() {
 
 async function login() {
     const username = document.getElementById('login-username').value;
+    const password = document.getElementById('login-password').value;
     
-    if (!username) {
-        document.getElementById('message').textContent = 'Bitte Username eingeben!';
+    if (!username || !password) {
+        document.getElementById('message').textContent = 'Bitte Username und Passwort eingeben!';
         return;
     }
     
     const response = await fetch('/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: username })
+        body: JSON.stringify({ username: username, password: password })
     });
     
     const data = await response.json();

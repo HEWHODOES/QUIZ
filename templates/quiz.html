@@ -3,22 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz</title>
+    <title>DevMind</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
 </head>
 <body>
+    
     <div class="header">
+        
         <div id="user-info">
             <span id="username-display" style="display: none;"></span>
+            <button id="back_to_gategories" class="back-btn">Kategorien</button>
             <button id="login-btn" onclick="window.location.href='/login'">Login</button>
             <button id="logout-btn" style="display: none;" onclick="logout()">Logout</button>
         </div>
     </div>
+    <div id="module-banner" style="display: none;">
+        <h8 id="module-name"></h8>
+    </div>
+    <h1 class="section-title">Kategorien</h1>
+
     <div class="category-container"></div>
-    <div class="module-container style=display: none"></div>
+    <div class="module-container"></div>
             
-    <div class="question-container"><h1 id="question-text"></h1></div>
+    <div class="question-container">
+        <h1 id="question-text"></h1>
+    </div>
 
     <div class="score-box" style="display: none;">
         <h3 class="points">Punkte</h3>
