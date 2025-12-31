@@ -42,7 +42,7 @@ def remove_data():
             confirm = input("Die Kategorie und ihr gesamter Inhalt wird gelöscht! Wirklich sicher? [JA/NEIN]: ")
 
             if confirm.lower() == "ja":
-                cursor.execute("DELETE FROM categories WHERE id = ?," (category_id,))
+                cursor.execute("DELETE FROM categories WHERE id = ?", (category_id,))
                 conn.commit()
                 print("\nKategorie entfernt!")
             else:
@@ -64,7 +64,7 @@ def remove_data():
             confirm = input("Das Modul und sein gesamter Inhalt wird gelöscht! Wirklich sicher? [JA/NEIN]: ")
 
             if confirm.lower() == "ja":
-                cursor.execute("DELETE FROM modules WHERE id = ?," (module_id,))
+                cursor.execute("DELETE FROM modules WHERE id = ?", (module_id,))
                 conn.commit()
                 print("\nModul entfernt!")
             else:
@@ -83,7 +83,7 @@ def remove_data():
                 print(f"[{module[0]}] {module[1]}")
             module_id = input("\nGib die ID des Moduls ein, aus dem du Fragen löschen möchtest:\n")
 
-            cursor.execute("SELECT id, text FROM questions WHERE module_id = ?," (module_id,))
+            cursor.execute("SELECT id, text FROM questions WHERE module_id = ?", (module_id,))
             questions = cursor.fetchall()
 
             if not questions:
@@ -97,7 +97,7 @@ def remove_data():
             confirm = input("\nBist du sicher, dass du diese Frage löschen willst? [JA/NEIN]: ")
 
             if confirm.lower() == "ja":
-                cursor.execute("DELETE FROM questions WHERE id = ?," (question_id,))
+                cursor.execute("DELETE FROM questions WHERE id = ?", (question_id,))
                 conn.commit()
                 print("\nFrage gelöscht!")
             else: 

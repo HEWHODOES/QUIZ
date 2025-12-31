@@ -61,7 +61,7 @@ body {
 
 .modulePickerBtn {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: clamp(0.6rem, 2vw, 1.5rem);
+    font-size: clamp(0.8rem, 1.2vw, 1rem);
     color: #cce6ff;
     display: flex;
     align-items: center;
@@ -80,7 +80,7 @@ body {
 }
 
 .modulePickerBtn:hover {
-    font-size: clamp(0.55rem, 1.9vw, 1.45rem);
+    font-size: clamp(0.8rem, 1.2vw, 1rem);
     box-shadow: 0 0.4rem 0.6rem rgba(0, 200, 255, 0.7);
     border: 2.5px solid #0090b0;
     color: #e0f7ff;

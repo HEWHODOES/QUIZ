@@ -1,0 +1,235 @@
+{
+  "categories": [
+    {
+      "name": "Datenschutz",
+      "modules": [
+        {
+          "name": "Auftrags verarbeitung",
+          "questions": [
+            {
+              "text": "Was versteht man unter Auftragsverarbeitung gemäß DSGVO?",
+              "answer_a": "Eine Verarbeitung personenbezogener Daten im Auftrag eines Verantwortlichen",
+              "answer_b": "Die Verarbeitung öffentlicher Daten",
+              "answer_c": "Die private Datennutzung",
+              "correct": "a"
+            },
+            {
+              "text": "Welche Rechtsgrundlage regelt die Auftragsverarbeitung?",
+              "answer_a": "Art. 5 DSGVO",
+              "answer_b": "Art. 28 DSGVO",
+              "answer_c": "Art. 6 DSGVO",
+              "correct": "b"
+            },
+            {
+              "text": "Wer bleibt für die Datenverarbeitung verantwortlich?",
+              "answer_a": "Der Auftragsverarbeiter",
+              "answer_b": "Der Datenschutzbeauftragte",
+              "answer_c": "Der Verantwortliche",
+              "correct": "c"
+            },
+            {
+              "text": "Was muss zwischen Verantwortlichem und Auftragsverarbeiter bestehen?",
+              "answer_a": "Ein Vertrag zur Auftragsverarbeitung",
+              "answer_b": "Eine mündliche Zusage",
+              "answer_c": "Eine Datenschutzerklärung",
+              "correct": "a"
+            },
+            {
+              "text": "Darf ein Auftragsverarbeiter Subunternehmer einsetzen?",
+              "answer_a": "Nein, grundsätzlich nicht",
+              "answer_b": "Ja, mit Genehmigung des Verantwortlichen",
+              "answer_c": "Ja, immer ohne Einschränkung",
+              "correct": "b"
+            },
+            {
+              "text": "Welche Pflicht hat der Auftragsverarbeiter bei Datenschutzverstößen?",
+              "answer_a": "Er informiert die betroffenen Personen",
+              "answer_b": "Er meldet direkt an die Aufsichtsbehörde",
+              "answer_c": "Er informiert unverzüglich den Verantwortlichen",
+              "correct": "c"
+            },
+            {
+              "text": "Welche Rolle hat ein Cloud-Anbieter meist?",
+              "answer_a": "Auftragsverarbeiter",
+              "answer_b": "Verantwortlicher",
+              "answer_c": "Betroffener",
+              "correct": "a"
+            },
+            {
+              "text": "Welche Maßnahme dient der Kontrolle eines Auftragsverarbeiters?",
+              "answer_a": "Datenschutzerklärung",
+              "answer_b": "Audit oder Prüfung",
+              "answer_c": "Backup",
+              "correct": "b"
+            },
+            {
+              "text": "Welche Konsequenz kann ein DSGVO-Verstoß haben?",
+              "answer_a": "Keine",
+              "answer_b": "Nur interne Abmahnung",
+              "answer_c": "Bußgeld",
+              "correct": "c"
+            },
+            {
+              "text": "Welche Pflicht hat der Verantwortliche?",
+              "answer_a": "Sorgfältige Auswahl des Auftragsverarbeiters",
+              "answer_b": "Keine Kontrolle",
+              "answer_c": "Nur technische Umsetzung",
+              "correct": "a"
+            }
+          ]
+        },
+        {
+          "name": "TOMs",
+          "questions": [
+            {
+              "text": "Was sind TOMs?",
+              "answer_a": "Maßnahmen zum Schutz personenbezogener Daten",
+              "answer_b": "Gesetze der EU",
+              "answer_c": "Verträge mit Kunden",
+              "correct": "a"
+            },
+            {
+              "text": "Wo sind TOMs in der DSGVO geregelt?",
+              "answer_a": "Art. 5 DSGVO",
+              "answer_b": "Art. 32 DSGVO",
+              "answer_c": "Art. 12 DSGVO",
+              "correct": "b"
+            },
+            {
+              "text": "Welche Maßnahme ist technisch?",
+              "answer_a": "Schulung",
+              "answer_b": "Verfahrensverzeichnis",
+              "answer_c": "Verschlüsselung",
+              "correct": "c"
+            },
+            {
+              "text": "Was zählt zu organisatorischen Maßnahmen?",
+              "answer_a": "Mitarbeiterschulungen",
+              "answer_b": "Firewall",
+              "answer_c": "VPN",
+              "correct": "a"
+            },
+            {
+              "text": "Was bedeutet Zugriffskontrolle?",
+              "answer_a": "Alle haben Zugriff",
+              "answer_b": "Nur Berechtigte dürfen zugreifen",
+              "answer_c": "Daten werden gelöscht",
+              "correct": "b"
+            },
+            {
+              "text": "Welche Maßnahme schützt Daten bei Übertragung?",
+              "answer_a": "Papierablage",
+              "answer_b": "Offenes WLAN",
+              "answer_c": "Verschlüsselung",
+              "correct": "c"
+            },
+            {
+              "text": "Was dient der Datensicherung?",
+              "answer_a": "Backup",
+              "answer_b": "Einwilligung",
+              "answer_c": "Datenschutzerklärung",
+              "correct": "a"
+            },
+            {
+              "text": "Warum sind Updates wichtig?",
+              "answer_a": "Sie erhöhen die Kosten",
+              "answer_b": "Sie schließen Sicherheitslücken",
+              "answer_c": "Sie löschen Daten",
+              "correct": "b"
+            },
+            {
+              "text": "Was bedeutet Datenintegrität?",
+              "answer_a": "Daten sind anonym",
+              "answer_b": "Daten sind jederzeit abrufbar",
+              "answer_c": "Daten bleiben korrekt und unverändert",
+              "correct": "c"
+            },
+            {
+              "text": "Wer ist für TOMs verantwortlich?",
+              "answer_a": "Der Verantwortliche",
+              "answer_b": "Die Aufsichtsbehörde",
+              "answer_c": "Der Betroffene",
+              "correct": "a"
+            }
+          ]
+        },
+        {
+          "name": "Datenschutz im Unternehmen",
+          "questions": [
+            {
+              "text": "Wann ist ein Datenschutzbeauftragter zu bestellen?",
+              "answer_a": "Bei gesetzlich festgelegten Voraussetzungen",
+              "answer_b": "Immer",
+              "answer_c": "Nie",
+              "correct": "a"
+            },
+            {
+              "text": "Welche Aufgabe hat der Datenschutzbeauftragte?",
+              "answer_a": "Software entwickeln",
+              "answer_b": "Einhaltung der DSGVO überwachen",
+              "answer_c": "Kundendaten verkaufen",
+              "correct": "b"
+            },
+            {
+              "text": "Wer ist Verantwortlicher nach DSGVO?",
+              "answer_a": "Der Datenschutzbeauftragte",
+              "answer_b": "Die betroffene Person",
+              "answer_c": "Die Stelle, die über Zweck und Mittel entscheidet",
+              "correct": "c"
+            },
+            {
+              "text": "Was ist ein Verzeichnis von Verarbeitungstätigkeiten?",
+              "answer_a": "Dokumentation der Datenverarbeitung",
+              "answer_b": "Mitarbeiterliste",
+              "answer_c": "Backup",
+              "correct": "a"
+            },
+            {
+              "text": "Wer muss das Verzeichnis führen?",
+              "answer_a": "Nur Behörden",
+              "answer_b": "Der Verantwortliche",
+              "answer_c": "Nur Betroffene",
+              "correct": "b"
+            },
+            {
+              "text": "Was ist eine interne Datenschutzrichtlinie?",
+              "answer_a": "Ein Gesetz",
+              "answer_b": "Ein externer Vertrag",
+              "answer_c": "Interne Regeln zum Datenschutz",
+              "correct": "c"
+            },
+            {
+              "text": "Warum sind Datenschutzschulungen wichtig?",
+              "answer_a": "Zur Sensibilisierung der Mitarbeiter",
+              "answer_b": "Zur Unterhaltung",
+              "answer_c": "Nur für IT",
+              "correct": "a"
+            },
+            {
+              "text": "Wer haftet bei Datenschutzverstößen?",
+              "answer_a": "Niemand",
+              "answer_b": "Der Verantwortliche",
+              "answer_c": "Nur der Mitarbeiter",
+              "correct": "b"
+            },
+            {
+              "text": "Was ist Ziel der Datenschutzorganisation?",
+              "answer_a": "Mehr Datensammlung",
+              "answer_b": "Kosten sparen",
+              "answer_c": "Schutz der Betroffenen und DSGVO-Einhaltung",
+              "correct": "c"
+            },
+            {
+              "text": "Was unterstützt eine gute Datenschutzorganisation?",
+              "answer_a": "Rechtssicherheit",
+              "answer_b": "Datenverkauf",
+              "answer_c": "Weniger Verantwortung",
+              "correct": "a"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
