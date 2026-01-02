@@ -17,8 +17,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         
         document.getElementById('module-banner').style.display = 'none';
         document.querySelector('.section-title').style.display = 'block';
-        moduleContainer.style.display = 'none';
-        categoryContainer.style.display = 'grid';
+        document.querySelector('.module-container').style.display = 'none';
+        document.querySelector('.category-container').style.display = 'grid';
         document.querySelector('.question-container').style.display = 'none';
         document.querySelector('.score-box').style.display = 'none';
         document.querySelectorAll('.answer-btn').forEach(btn => btn.style.display = 'none');
@@ -40,7 +40,60 @@ document.addEventListener("DOMContentLoaded", async () => {
     
     let currentModuleId = null;
 
-    // === STEP 1: Categories laden ===
+    // Helper: re-render modules for the current category (keeps perfect/completed state from server)
+    async function refreshModulesUI() {
+        const categoryId = moduleContainer.dataset.categoryId;
+        if (!categoryId) return;
+
+        moduleContainer.innerHTML = '';
+
+        const modulesResponse = await fetch(`/get_modules/${categoryId}`);
+        const modules = await modulesResponse.json();
+
+        modules.forEach(module => {
+            const moduleBtn = document.createElement('button');
+            moduleBtn.className = 'modulePickerBtn';
+
+            if (module.perfect) {
+                moduleBtn.classList.add("moduleBtnPerfect");
+            }
+
+            if (module.completed) {
+                moduleBtn.textContent = module.name + ' ✓';
+            } else {
+                moduleBtn.textContent = module.name;
+            }
+                
+            moduleBtn.dataset.moduleId = module.id;
+            moduleContainer.appendChild(moduleBtn);
+                
+            // attach click handler (same behaviour as initial load)
+            moduleBtn.addEventListener('click', async () => {
+                document.getElementById('module-banner').style.display = 'block';
+                document.getElementById('module-name').textContent = module.name;
+                document.querySelector('.section-title').style.display = 'none';
+                await fetch("/reset_questions", { method: "POST" });
+                currentModuleId = module.id;
+                        
+                moduleContainer.style.display = 'none';
+                document.querySelector('.score-box').style.display = "";
+                document.querySelectorAll(".answer-btn").forEach(btn => btn.style.display = "");
+
+                const response = await fetch(`/get_question/${currentModuleId}`);
+                const data = await response.json();
+
+                document.querySelector('.question-container').style.display = 'block';
+                if (data.text) document.getElementById("question-text").textContent = data.text;
+
+                const answerButtons = document.querySelectorAll(".answer-btn");
+                if (data.answer_a) { answerButtons[0].textContent = data.answer_a; answerButtons[0].dataset.questionId = data.id; }
+                if (data.answer_b) { answerButtons[1].textContent = data.answer_b; answerButtons[1].dataset.questionId = data.id; }
+                if (data.answer_c) { answerButtons[2].textContent = data.answer_c; answerButtons[2].dataset.questionId = data.id; }
+            });
+        });
+    }
+
+    // === STEP 1: Load categories ===
     const categoriesResponse = await fetch('/get_categories');
     const categories = await categoriesResponse.json();
     
@@ -52,33 +105,42 @@ document.addEventListener("DOMContentLoaded", async () => {
         btn.dataset.categoryId = category.id;
         categoryContainer.appendChild(btn);
         
-        // === STEP 2: Category Click → Module laden ===
+        // === STEP 2: Category Click → Load modules ===
         btn.addEventListener('click', async () => {
             document.getElementById('module-banner').style.display = 'block';
             document.getElementById('module-name').textContent = category.name;
+
+            // IMPORTANT: store both name and id so we can refresh later
             moduleContainer.dataset.categoryName = category.name;
+            moduleContainer.dataset.categoryId = category.id;  // <-- store id
+
             document.querySelector('.section-title').style.display = 'none';
             categoryContainer.style.display = 'none';
             moduleContainer.style.display = 'grid';
-            moduleContainer.innerHTML = '';  // Leeren
+            moduleContainer.innerHTML = '';  // clear
             
+            // fetch modules and populate (same as refreshModulesUI logic)
             const modulesResponse = await fetch(`/get_modules/${category.id}`);
             const modules = await modulesResponse.json();
             
             modules.forEach(module => {
                 const moduleBtn = document.createElement('button');
+                moduleBtn.className = 'modulePickerBtn';
+
+                if (module.perfect) {
+                    moduleBtn.classList.add("moduleBtnPerfect");
+                }
+
                 if (module.completed) {
                     moduleBtn.textContent = module.name + ' ✓';
-                    moduleBtn.style.backgroundColor = '#28a745';
-                } 
-                else {
-                moduleBtn.textContent = module.name;
-            }
-                moduleBtn.className = 'modulePickerBtn';
+                } else {
+                    moduleBtn.textContent = module.name;
+                }
+                
                 moduleBtn.dataset.moduleId = module.id;
                 moduleContainer.appendChild(moduleBtn);
                 
-                // === STEP 3: Modul Click → Quiz starten ===
+                // === STEP 3: Module Click → Start quiz ===
                 moduleBtn.addEventListener('click', async () => {
                     document.getElementById('module-banner').style.display = 'block';
                     document.getElementById('module-name').textContent = module.name;
@@ -93,8 +155,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                     const response = await fetch(`/get_question/${currentModuleId}`);
                     const data = await response.json();
 
-                    console.log("Daten:", data); 
-
                     document.querySelector('.question-container').style.display = 'block';
                     document.getElementById("question-text").textContent = data.text;
 
@@ -108,7 +168,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     });
 
-    // === Antwort-Buttons ===
+    // === Answer buttons behaviour ===
     buttons.forEach(button => {
         button.addEventListener("click", async () => {
             buttons.forEach(b => b.disabled = true);
@@ -138,16 +198,32 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
 
             if (!result.correct) button.textContent = "FALSCH";
-            showNextButton();
+
+            // Choose label only after server confirmed whether this was the last question
+            const lastLabel = "Zurück zu Modulen"; // final button text
+            const nextLabel = result.module_finished ? lastLabel : "Nächste Frage";
+
+            // Pass module_finished so showNextButton can change behavior on the final question
+            showNextButton(nextLabel, !!result.module_finished);
         });
     });
 
-    function showNextButton() {
+    function showNextButton(label = "Nächste Frage", moduleFinished = false) {
         if (document.querySelector(".next-btn")) return;
         const nextBtn = document.createElement("button");
-        nextBtn.textContent = "Nächste Frage";
+        nextBtn.textContent = label;
         nextBtn.className = "next-btn";
-        nextBtn.onclick = () => loadNewQuestion(buttons, currentModuleId);
+
+        if (moduleFinished) {
+            // Final question: reload the page so the module list is refreshed from the server
+            nextBtn.onclick = () => window.location.reload();
+        } else {
+            // Normal behaviour: load the next question
+            nextBtn.onclick = () => loadNewQuestion(buttons, currentModuleId);
+        }
+
         document.querySelector('.answers-container').appendChild(nextBtn);
     }
+
+    // end of DOMContentLoaded
 });

@@ -1,0 +1,759 @@
+{
+  "categories": [
+    {
+      "name": "JavaScript2",
+      "modules": [
+        {
+          "name": "Scope",
+          "questions": [
+            {
+              "text": "Was ist globaler Scope?",
+              "answer_a": "Nur in Funktionen",
+              "answer_b": "Nur in Objekten",
+              "answer_c": "Überall verfügbar",
+              "correct": "c"
+            },
+            {
+              "text": "Was ist lokaler Scope?",
+              "answer_a": "Nur in Block/Funktion",
+              "answer_b": "Überall",
+              "answer_c": "Nur global",
+              "correct": "a"
+            },
+            {
+              "text": "Hat let Block-Scope?",
+              "answer_a": "Nein",
+              "answer_b": "Nur in Funktionen",
+              "answer_c": "Ja",
+              "correct": "c"
+            },
+            {
+              "text": "Hat var Block-Scope?",
+              "answer_a": "Ja",
+              "answer_b": "Nein",
+              "answer_c": "Manchmal",
+              "correct": "b"
+            },
+            {
+              "text": "Was ist Function-Scope?",
+              "answer_a": "Globale Variable",
+              "answer_b": "Keine Variable",
+              "answer_c": "Variable nur in Funktion",
+              "correct": "c"
+            },
+            {
+              "text": "Können innere Funktionen auf äußere Variablen zugreifen?",
+              "answer_a": "Nein",
+              "answer_b": "Ja",
+              "answer_c": "Nur mit var",
+              "correct": "b"
+            },
+            {
+              "text": "Was ist Shadowing?",
+              "answer_a": "Fehler",
+              "answer_b": "Debugging",
+              "answer_c": "Variable überdeckt äußere",
+              "correct": "c"
+            },
+            {
+              "text": "Wo ist eine const-Variable verfügbar?",
+              "answer_a": "Global",
+              "answer_b": "In ihrem Block",
+              "answer_c": "Überall",
+              "correct": "b"
+            },
+            {
+              "text": "Was ist Lexical Scope?",
+              "answer_a": "Scope zur Laufzeit",
+              "answer_b": "Kein Scope",
+              "answer_c": "Scope zur Schreibzeit",
+              "correct": "c"
+            },
+            {
+              "text": "Können Blöcke {} eigenen Scope haben?",
+              "answer_a": "Nein",
+              "answer_b": "Nur Funktionen",
+              "answer_c": "Ja, mit let/const",
+              "correct": "c"
+            }
+          ]
+        },
+        {
+          "name": "Closures",
+          "questions": [
+            {
+              "text": "Was ist eine Closure?",
+              "answer_a": "Funktion mit Zugriff auf äußere Variablen",
+              "answer_b": "Geschlossene Funktion",
+              "answer_c": "Private Variable",
+              "correct": "a"
+            },
+            {
+              "text": "Behält eine Closure ihren Scope?",
+              "answer_a": "Nein",
+              "answer_b": "Nur manchmal",
+              "answer_c": "Ja",
+              "correct": "c"
+            },
+            {
+              "text": "Können Closures private Variablen erstellen?",
+              "answer_a": "Nein",
+              "answer_b": "Ja",
+              "answer_c": "Nur mit class",
+              "correct": "b"
+            },
+            {
+              "text": "Wird der Scope bei Closure-Rückgabe behalten?",
+              "answer_a": "Nein",
+              "answer_b": "Nur in Loops",
+              "answer_c": "Ja",
+              "correct": "c"
+            },
+            {
+              "text": "Was speichert eine Closure?",
+              "answer_a": "Nur Funktionen",
+              "answer_b": "Referenz auf äußere Variablen",
+              "answer_c": "Nur Zahlen",
+              "correct": "b"
+            },
+            {
+              "text": "Können mehrere Closures denselben Scope teilen?",
+              "answer_a": "Nein",
+              "answer_b": "Nur Arrays",
+              "answer_c": "Ja",
+              "correct": "c"
+            },
+            {
+              "text": "Sind Closures nützlich für Daten-Kapselung?",
+              "answer_a": "Nein",
+              "answer_b": "Nur bei Objekten",
+              "answer_c": "Ja",
+              "correct": "c"
+            },
+            {
+              "text": "Was ist ein häufiges Problem mit Closures in Loops?",
+              "answer_a": "Zu langsam",
+              "answer_b": "Teilen letzte Variable",
+              "answer_c": "Funktioniert nicht",
+              "correct": "b"
+            },
+            {
+              "text": "Löst let das Loop-Closure-Problem?",
+              "answer_a": "Nein",
+              "answer_b": "Nur mit const",
+              "answer_c": "Ja",
+              "correct": "c"
+            },
+            {
+              "text": "Können Closures Memory Leaks verursachen?",
+              "answer_a": "Nie",
+              "answer_b": "Immer",
+              "answer_c": "Ja, wenn nicht aufgeräumt",
+              "correct": "c"
+            }
+          ]
+        },
+        {
+          "name": "Callbacks",
+          "questions": [
+            {
+              "text": "Was ist ein Callback?",
+              "answer_a": "Funktion als Argument",
+              "answer_b": "Rückgabewert",
+              "answer_c": "Variable",
+              "correct": "a"
+            },
+            {
+              "text": "Wann wird ein Callback ausgeführt?",
+              "answer_a": "Sofort",
+              "answer_b": "Nie",
+              "answer_c": "Später/nach Event",
+              "correct": "c"
+            },
+            {
+              "text": "Was ist Callback Hell?",
+              "answer_a": "Verschachtelte Callbacks",
+              "answer_b": "Fehler",
+              "answer_c": "Langsamer Code",
+              "correct": "a"
+            },
+            {
+              "text": "Sind Callbacks synchron oder asynchron?",
+              "answer_a": "Nur synchron",
+              "answer_b": "Nur asynchron",
+              "answer_c": "Beides möglich",
+              "correct": "c"
+            },
+            {
+              "text": "Was ist ein typisches Callback-Beispiel?",
+              "answer_a": "console.log",
+              "answer_b": "let x = 5",
+              "answer_c": "addEventListener",
+              "correct": "c"
+            },
+            {
+              "text": "Können Callbacks Parameter haben?",
+              "answer_a": "Nein",
+              "answer_b": "Ja",
+              "answer_c": "Nur einen",
+              "correct": "b"
+            },
+            {
+              "text": "Was ist ein Error-First Callback?",
+              "answer_a": "Nur Fehler",
+              "answer_b": "Keine Fehler",
+              "answer_c": "Erster Parameter ist Error",
+              "correct": "c"
+            },
+            {
+              "text": "Ersetzen Promises Callbacks?",
+              "answer_a": "Komplett",
+              "answer_b": "Teilweise, bessere Alternative",
+              "answer_c": "Nein",
+              "correct": "b"
+            },
+            {
+              "text": "Kann man mehrere Callbacks haben?",
+              "answer_a": "Nein",
+              "answer_b": "Nur zwei",
+              "answer_c": "Ja",
+              "correct": "c"
+            },
+            {
+              "text": "Was ist der Nachteil von verschachtelten Callbacks?",
+              "answer_a": "Zu schnell",
+              "answer_b": "Funktioniert nicht",
+              "answer_c": "Unleserlich",
+              "correct": "c"
+            }
+          ]
+        },
+        {
+          "name": "Promises",
+          "questions": [
+            {
+              "text": "Was ist ein Promise?",
+              "answer_a": "Objekt für async Operationen",
+              "answer_b": "Funktion",
+              "answer_c": "Variable",
+              "correct": "a"
+            },
+            {
+              "text": "Welche States hat ein Promise?",
+              "answer_a": "start, end",
+              "answer_b": "true, false",
+              "answer_c": "pending, fulfilled, rejected",
+              "correct": "c"
+            },
+            {
+              "text": "Was macht .then()?",
+              "answer_a": "Fehlerbehandlung",
+              "answer_b": "Behandelt Erfolg",
+              "answer_c": "Stoppt Promise",
+              "correct": "b"
+            },
+            {
+              "text": "Was macht .catch()?",
+              "answer_a": "Erfolg",
+              "answer_b": "Abbruch",
+              "answer_c": "Fehlerbehandlung",
+              "correct": "c"
+            },
+            {
+              "text": "Was ist Promise Chaining?",
+              "answer_a": "Mehrere .then() hintereinander",
+              "answer_b": "Fehler",
+              "answer_c": "Loop",
+              "correct": "a"
+            },
+            {
+              "text": "Was macht Promise.all()?",
+              "answer_a": "Erstes Promise",
+              "answer_b": "Löscht Promises",
+              "answer_c": "Wartet auf alle Promises",
+              "correct": "c"
+            },
+            {
+              "text": "Was ist der Vorteil von Promises?",
+              "answer_a": "Schneller",
+              "answer_b": "Lesbarerer Code",
+              "answer_c": "Kleinerer Code",
+              "correct": "b"
+            },
+            {
+              "text": "Kann man Promises verschachteln?",
+              "answer_a": "Nein",
+              "answer_b": "Nur einmal",
+              "answer_c": "Ja, aber nicht empfohlen",
+              "correct": "c"
+            },
+            {
+              "text": "Was macht .finally()?",
+              "answer_a": "Nur bei Erfolg",
+              "answer_b": "Immer am Ende",
+              "answer_c": "Nur bei Fehler",
+              "correct": "b"
+            },
+            {
+              "text": "Ist ein Promise sofort resolved?",
+              "answer_a": "Ja",
+              "answer_b": "Manchmal",
+              "answer_c": "Nein, asynchron",
+              "correct": "c"
+            }
+          ]
+        },
+        {
+          "name": "Async",
+          "questions": [
+            {
+              "text": "Was macht async vor einer Funktion?",
+              "answer_a": "Macht sie schneller",
+              "answer_b": "Löscht sie",
+              "answer_c": "Gibt Promise zurück",
+              "correct": "c"
+            },
+            {
+              "text": "Was macht await?",
+              "answer_a": "Wartet auf Promise",
+              "answer_b": "Stoppt Programm",
+              "answer_c": "Löscht Daten",
+              "correct": "a"
+            },
+            {
+              "text": "Kann await ohne async verwendet werden?",
+              "answer_a": "Ja",
+              "answer_b": "Nur in Loops",
+              "answer_c": "Nein",
+              "correct": "c"
+            },
+            {
+              "text": "Ist async/await lesbarer als Promises?",
+              "answer_a": "Nein",
+              "answer_b": "Ja",
+              "answer_c": "Gleich",
+              "correct": "b"
+            },
+            {
+              "text": "Wie behandelt man Fehler bei async/await?",
+              "answer_a": ".catch()",
+              "answer_b": "if/else",
+              "answer_c": "try/catch",
+              "correct": "c"
+            },
+            {
+              "text": "Kann man mehrere await in einer Funktion haben?",
+              "answer_a": "Nein",
+              "answer_b": "Ja",
+              "answer_c": "Nur zwei",
+              "correct": "b"
+            },
+            {
+              "text": "Blockiert await den gesamten Code?",
+              "answer_a": "Ja",
+              "answer_b": "Manchmal",
+              "answer_c": "Nein, nur die Funktion",
+              "correct": "c"
+            },
+            {
+              "text": "Was ist der Vorteil von async/await?",
+              "answer_a": "Schneller",
+              "answer_b": "Synchroner Code-Stil",
+              "answer_c": "Weniger Speicher",
+              "correct": "b"
+            },
+            {
+              "text": "Kann eine async-Funktion return verwenden?",
+              "answer_a": "Nein",
+              "answer_b": "Nur await",
+              "answer_c": "Ja",
+              "correct": "c"
+            },
+            {
+              "text": "Was passiert bei Error ohne try/catch?",
+              "answer_a": "Ignoriert",
+              "answer_b": "Funktioniert normal",
+              "answer_c": "Unhandled rejection",
+              "correct": "c"
+            }
+          ]
+        },
+        {
+          "name": "Destructuring",
+          "questions": [
+            {
+              "text": "Was ist Destructuring?",
+              "answer_a": "Löscht Daten",
+              "answer_b": "Extrahiert Werte",
+              "answer_c": "Erstellt Arrays",
+              "correct": "b"
+            },
+            {
+              "text": "Wie destructured man ein Array?",
+              "answer_a": "const [a, b] = arr",
+              "answer_b": "const {a, b} = arr",
+              "answer_c": "const a, b = arr",
+              "correct": "a"
+            },
+            {
+              "text": "Wie destructured man ein Objekt?",
+              "answer_a": "const [a, b] = obj",
+              "answer_b": "const a = obj",
+              "answer_c": "const {a, b} = obj",
+              "correct": "c"
+            },
+            {
+              "text": "Kann man beim Destructuring umbenennen?",
+              "answer_a": "Nein",
+              "answer_b": "Ja, {old: new}",
+              "answer_c": "Nur Arrays",
+              "correct": "b"
+            },
+            {
+              "text": "Was sind Default-Werte beim Destructuring?",
+              "answer_a": "Fehler",
+              "answer_b": "Erste Werte",
+              "answer_c": "Fallback wenn undefined",
+              "correct": "c"
+            },
+            {
+              "text": "Kann man verschachteltes Destructuring machen?",
+              "answer_a": "Nein",
+              "answer_b": "Ja",
+              "answer_c": "Nur einmal",
+              "correct": "b"
+            },
+            {
+              "text": "Was macht ... bei Destructuring?",
+              "answer_a": "Löscht",
+              "answer_b": "Fehler",
+              "answer_c": "Rest-Operator",
+              "correct": "c"
+            },
+            {
+              "text": "Kann man Destructuring in Funktionsparametern nutzen?",
+              "answer_a": "Nein",
+              "answer_b": "Ja",
+              "answer_c": "Nur bei Arrow Functions",
+              "correct": "b"
+            },
+            {
+              "text": "Was passiert bei fehlendem Wert?",
+              "answer_a": "Error",
+              "answer_b": "null",
+              "answer_c": "undefined",
+              "correct": "c"
+            },
+            {
+              "text": "Kann man Arrays und Objekte gleichzeitig destructuren?",
+              "answer_a": "Nein",
+              "answer_b": "Nur mit const",
+              "answer_c": "Ja",
+              "correct": "c"
+            }
+          ]
+        },
+        {
+          "name": "Spread",
+          "questions": [
+            {
+              "text": "Was macht der Spread-Operator?",
+              "answer_a": "Löscht Daten",
+              "answer_b": "Erweitert Elemente",
+              "answer_c": "Erstellt Variablen",
+              "correct": "b"
+            },
+            {
+              "text": "Wie sieht der Spread-Operator aus?",
+              "answer_a": "---",
+              "answer_b": "+++",
+              "answer_c": "...",
+              "correct": "c"
+            },
+            {
+              "text": "Kann man Arrays mit Spread kombinieren?",
+              "answer_a": "Nein",
+              "answer_b": "Nur zwei",
+              "answer_c": "Ja",
+              "correct": "c"
+            },
+            {
+              "text": "Was macht [...arr1, ...arr2]?",
+              "answer_a": "Löscht Arrays",
+              "answer_b": "Kombiniert Arrays",
+              "answer_c": "Fehler",
+              "correct": "b"
+            },
+            {
+              "text": "Funktioniert Spread bei Objekten?",
+              "answer_a": "Nein",
+              "answer_b": "Nur Arrays",
+              "answer_c": "Ja",
+              "correct": "c"
+            },
+            {
+              "text": "Was ist der Unterschied zu Rest?",
+              "answer_a": "Keiner",
+              "answer_b": "Spread erweitert, Rest sammelt",
+              "answer_c": "Spread ist schneller",
+              "correct": "b"
+            },
+            {
+              "text": "Kann Spread zum Kopieren verwendet werden?",
+              "answer_a": "Nein",
+              "answer_b": "Nur bei Strings",
+              "answer_c": "Ja, shallow copy",
+              "correct": "c"
+            },
+            {
+              "text": "Funktioniert Spread bei Strings?",
+              "answer_a": "Nein",
+              "answer_b": "Ja",
+              "answer_c": "Nur bei Arrays",
+              "correct": "b"
+            },
+            {
+              "text": "Was macht {...obj} ?",
+              "answer_a": "Löscht Objekt",
+              "answer_b": "Fehler",
+              "answer_c": "Kopiert Objekt",
+              "correct": "c"
+            },
+            {
+              "text": "Überschreibt Spread bei Objekten doppelte Keys?",
+              "answer_a": "Nein",
+              "answer_b": "Error",
+              "answer_c": "Ja, letzte gewinnt",
+              "correct": "c"
+            }
+          ]
+        },
+        {
+          "name": "Klassen",
+          "questions": [
+            {
+              "text": "Wie erstellt man eine Klasse?",
+              "answer_a": "class Name {}",
+              "answer_b": "new Class()",
+              "answer_c": "function class",
+              "correct": "a"
+            },
+            {
+              "text": "Was ist ein constructor?",
+              "answer_a": "Löschfunktion",
+              "answer_b": "Variable",
+              "answer_c": "Initialisierungsmethode",
+              "correct": "c"
+            },
+            {
+              "text": "Wie erstellt man eine Instanz?",
+              "answer_a": "class.create()",
+              "answer_b": "make ClassName",
+              "answer_c": "new ClassName()",
+              "correct": "c"
+            },
+            {
+              "text": "Was ist Vererbung?",
+              "answer_a": "Löschen",
+              "answer_b": "Klasse erbt von anderer",
+              "answer_c": "Kopieren",
+              "correct": "b"
+            },
+            {
+              "text": "Wie erbt eine Klasse?",
+              "answer_a": "class Child -> Parent",
+              "answer_b": "class Child(Parent)",
+              "answer_c": "class Child extends Parent",
+              "correct": "c"
+            },
+            {
+              "text": "Was macht super()?",
+              "answer_a": "Löscht",
+              "answer_b": "Ruft Parent-Constructor auf",
+              "answer_c": "Erstellt Variable",
+              "correct": "b"
+            },
+            {
+              "text": "Sind Klassen-Methoden standardmäßig public?",
+              "answer_a": "Nein",
+              "answer_b": "Manchmal",
+              "answer_c": "Ja",
+              "correct": "c"
+            },
+            {
+              "text": "Was sind statische Methoden?",
+              "answer_a": "Langsam",
+              "answer_b": "Private",
+              "answer_c": "Auf Klasse, nicht Instanz",
+              "correct": "c"
+            },
+            {
+              "text": "Wie macht man private Properties?",
+              "answer_a": "private x",
+              "answer_b": "#x",
+              "answer_c": "_x",
+              "correct": "b"
+            },
+            {
+              "text": "Können Klassen von mehreren erben?",
+              "answer_a": "Ja",
+              "answer_b": "Nur zwei",
+              "answer_c": "Nein, nur eine",
+              "correct": "c"
+            }
+          ]
+        },
+        {
+          "name": "Module",
+          "questions": [
+            {
+              "text": "Was sind ES6 Module?",
+              "answer_a": "Dateien mit Code",
+              "answer_b": "Import/Export System",
+              "answer_c": "Variablen",
+              "correct": "b"
+            },
+            {
+              "text": "Wie exportiert man?",
+              "answer_a": "out x",
+              "answer_b": "send x",
+              "answer_c": "export const x",
+              "correct": "c"
+            },
+            {
+              "text": "Wie importiert man?",
+              "answer_a": "get x from 'file'",
+              "answer_b": "import x from 'file'",
+              "answer_c": "include x",
+              "correct": "b"
+            },
+            {
+              "text": "Was ist ein default export?",
+              "answer_a": "Fehler",
+              "answer_b": "Erster Export",
+              "answer_c": "Hauptexport",
+              "correct": "c"
+            },
+            {
+              "text": "Kann man mehrere named exports haben?",
+              "answer_a": "Nein",
+              "answer_b": "Ja",
+              "answer_c": "Nur zwei",
+              "correct": "b"
+            },
+            {
+              "text": "Wie importiert man alles?",
+              "answer_a": "import all",
+              "answer_b": "import {}",
+              "answer_c": "import * as name",
+              "correct": "c"
+            },
+            {
+              "text": "Sind Module standardmäßig strict mode?",
+              "answer_a": "Nein",
+              "answer_b": "Optional",
+              "answer_c": "Ja",
+              "correct": "c"
+            },
+            {
+              "text": "Kann man beim Import umbenennen?",
+              "answer_a": "Nein",
+              "answer_b": "Ja, mit as",
+              "answer_c": "Nur bei export",
+              "correct": "b"
+            },
+            {
+              "text": "Was ist der Vorteil von Modulen?",
+              "answer_a": "Schneller",
+              "answer_b": "Größerer Code",
+              "answer_c": "Organisation & Wiederverwendung",
+              "correct": "c"
+            },
+            {
+              "text": "Werden Module einmal oder mehrfach geladen?",
+              "answer_a": "Mehrfach",
+              "answer_b": "Nie",
+              "answer_c": "Einmal (cached)",
+              "correct": "c"
+            }
+          ]
+        },
+        {
+          "name": "Fehlerbehandlung",
+          "questions": [
+            {
+              "text": "Was macht try/catch?",
+              "answer_a": "Löscht Code",
+              "answer_b": "Fängt Fehler ab",
+              "answer_c": "Beschleunigt Code",
+              "correct": "b"
+            },
+            {
+              "text": "Was passiert im catch-Block?",
+              "answer_a": "Erfolg",
+              "answer_b": "Normaler Code",
+              "answer_c": "Fehlerbehandlung",
+              "correct": "c"
+            },
+            {
+              "text": "Was ist finally?",
+              "answer_a": "Läuft immer",
+              "answer_b": "Nur bei Erfolg",
+              "answer_c": "Nur bei Fehler",
+              "correct": "a"
+            },
+            {
+              "text": "Wie wirft man manuell einen Fehler?",
+              "answer_a": "error()",
+              "answer_b": "fail()",
+              "answer_c": "throw new Error()",
+              "correct": "c"
+            },
+            {
+              "text": "Was ist ein TypeError?",
+              "answer_a": "Syntaxfehler",
+              "answer_b": "Falscher Datentyp",
+              "answer_c": "Netzwerkfehler",
+              "correct": "b"
+            },
+            {
+              "text": "Kann man eigene Error-Klassen erstellen?",
+              "answer_a": "Nein",
+              "answer_b": "Ja",
+              "answer_c": "Nur mit try",
+              "correct": "b"
+            },
+            {
+              "text": "Was macht throw?",
+              "answer_a": "Fängt Fehler",
+              "answer_b": "Löscht Fehler",
+              "answer_c": "Wirft Fehler",
+              "correct": "c"
+            },
+            {
+              "text": "Braucht man immer catch nach try?",
+              "answer_a": "Ja",
+              "answer_b": "Nur mit finally",
+              "answer_c": "Nein, finally reicht auch",
+              "correct": "c"
+            },
+            {
+              "text": "Was ist ein ReferenceError?",
+              "answer_a": "Variable existiert nicht",
+              "answer_b": "Typfehler",
+              "answer_c": "Syntaxfehler",
+              "correct": "a"
+            },
+            {
+              "text": "Stoppt ein unbehandelter Fehler das Programm?",
+              "answer_a": "Nein",
+              "answer_b": "Manchmal",
+              "answer_c": "Ja",
+              "correct": "c"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

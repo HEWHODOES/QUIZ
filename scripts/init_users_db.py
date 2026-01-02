@@ -32,6 +32,7 @@ cursor.execute("""
                user_id INTEGER NOT NULL,
                module_id INTEGER NOT NULL,
                completed_at TEXT DEFAULT (datetime('now')),
+               perfect INTEGER DEFAULT 0,
                FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
                UNIQUE(user_id, module_id)
     )

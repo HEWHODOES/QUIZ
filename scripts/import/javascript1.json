@@ -1,0 +1,759 @@
+{
+  "categories": [
+    {
+      "name": "JavaScript1",
+      "modules": [
+        {
+          "name": "Variablen",
+          "questions": [
+            {
+              "text": "Welches Keyword erstellt eine veränderbare Variable?",
+              "answer_a": "let",
+              "answer_b": "const",
+              "answer_c": "var",
+              "correct": "a"
+            },
+            {
+              "text": "Welches Keyword erstellt eine unveränderbare Variable?",
+              "answer_a": "let",
+              "answer_b": "const",
+              "answer_c": "static",
+              "correct": "b"
+            },
+            {
+              "text": "Was ist der moderne Standard für Variablen?",
+              "answer_a": "var",
+              "answer_b": "variable",
+              "answer_c": "let und const",
+              "correct": "c"
+            },
+            {
+              "text": "Kann man eine const-Variable neu zuweisen?",
+              "answer_a": "Ja, immer",
+              "answer_b": "Nein, nie",
+              "answer_c": "Nur mit var",
+              "correct": "b"
+            },
+            {
+              "text": "Was passiert bei: let x = 5; x = 10;",
+              "answer_a": "Fehler",
+              "answer_b": "x ist 10",
+              "answer_c": "x ist 5",
+              "correct": "b"
+            },
+            {
+              "text": "Wie deklariert man mehrere Variablen in einer Zeile?",
+              "answer_a": "let a, b, c;",
+              "answer_b": "let a b c;",
+              "answer_c": "let (a, b, c);",
+              "correct": "a"
+            },
+            {
+              "text": "Was ist der Wert einer nicht initialisierten Variable?",
+              "answer_a": "null",
+              "answer_b": "undefined",
+              "answer_c": "0",
+              "correct": "b"
+            },
+            {
+              "text": "Ist 'let user;' eine gültige Deklaration?",
+              "answer_a": "Ja",
+              "answer_b": "Nein",
+              "answer_c": "Nur mit Wert",
+              "correct": "a"
+            },
+            {
+              "text": "Kann ein Variablenname mit einer Zahl beginnen?",
+              "answer_a": "Ja",
+              "answer_b": "Nein",
+              "answer_c": "Nur bei const",
+              "correct": "b"
+            },
+            {
+              "text": "Welches Zeichen ist in Variablennamen NICHT erlaubt?",
+              "answer_a": "_",
+              "answer_b": "$",
+              "answer_c": "-",
+              "correct": "c"
+            }
+          ]
+        },
+        {
+          "name": "Datentypen",
+          "questions": [
+            {
+              "text": "Welcher Datentyp ist 'Hello'?",
+              "answer_a": "Number",
+              "answer_b": "String",
+              "answer_c": "Boolean",
+              "correct": "b"
+            },
+            {
+              "text": "Welcher Datentyp ist true?",
+              "answer_a": "String",
+              "answer_b": "Number",
+              "answer_c": "Boolean",
+              "correct": "c"
+            },
+            {
+              "text": "Wie prüft man den Typ einer Variable?",
+              "answer_a": "type(x)",
+              "answer_b": "typeof x",
+              "answer_c": "x.type()",
+              "correct": "b"
+            },
+            {
+              "text": "Was gibt typeof 42 zurück?",
+              "answer_a": "number",
+              "answer_b": "integer",
+              "answer_c": "digit",
+              "correct": "a"
+            },
+            {
+              "text": "Welcher Wert repräsentiert 'nichts'?",
+              "answer_a": "empty",
+              "answer_b": "null",
+              "answer_c": "void",
+              "correct": "b"
+            },
+            {
+              "text": "Was ist NaN?",
+              "answer_a": "Not a Number",
+              "answer_b": "Null and None",
+              "answer_c": "New Array Number",
+              "correct": "a"
+            },
+            {
+              "text": "Welcher Typ ist [1, 2, 3]?",
+              "answer_a": "Array",
+              "answer_b": "Object",
+              "answer_c": "List",
+              "correct": "b"
+            },
+            {
+              "text": "Kann JavaScript verschiedene Typen in Variablen speichern?",
+              "answer_a": "Nein",
+              "answer_b": "Ja",
+              "answer_c": "Nur mit var",
+              "correct": "b"
+            },
+            {
+              "text": "Was ist typeof undefined?",
+              "answer_a": "null",
+              "answer_b": "undefined",
+              "answer_c": "object",
+              "correct": "b"
+            },
+            {
+              "text": "Welcher Datentyp kann nur zwei Werte haben?",
+              "answer_a": "Binary",
+              "answer_b": "Boolean",
+              "answer_c": "Bit",
+              "correct": "b"
+            }
+          ]
+        },
+        {
+          "name": "Operatoren",
+          "questions": [
+            {
+              "text": "Was ist 5 + 3?",
+              "answer_a": "8",
+              "answer_b": "53",
+              "answer_c": "15",
+              "correct": "a"
+            },
+            {
+              "text": "Was macht der Operator %?",
+              "answer_a": "Prozent",
+              "answer_b": "Modulo (Rest)",
+              "answer_c": "Division",
+              "correct": "b"
+            },
+            {
+              "text": "Was ist 10 % 3?",
+              "answer_a": "3",
+              "answer_b": "0",
+              "answer_c": "1",
+              "correct": "c"
+            },
+            {
+              "text": "Was macht x++?",
+              "answer_a": "x minus 1",
+              "answer_b": "x mal 2",
+              "answer_c": "x plus 1",
+              "correct": "c"
+            },
+            {
+              "text": "Was ist === ?",
+              "answer_a": "Zuweisung",
+              "answer_b": "Strikter Vergleich",
+              "answer_c": "Addition",
+              "correct": "b"
+            },
+            {
+              "text": "Was ist der Unterschied zwischen == und ===?",
+              "answer_a": "Keiner",
+              "answer_b": "=== prüft auch den Typ",
+              "answer_c": "== ist schneller",
+              "correct": "b"
+            },
+            {
+              "text": "Was ist '5' == 5?",
+              "answer_a": "true",
+              "answer_b": "false",
+              "answer_c": "Error",
+              "correct": "a"
+            },
+            {
+              "text": "Was ist '5' === 5?",
+              "answer_a": "true",
+              "answer_b": "false",
+              "answer_c": "undefined",
+              "correct": "b"
+            },
+            {
+              "text": "Was macht der Operator && ?",
+              "answer_a": "ODER",
+              "answer_b": "UND",
+              "answer_c": "NICHT",
+              "correct": "b"
+            },
+            {
+              "text": "Was ist !true?",
+              "answer_a": "true",
+              "answer_b": "false",
+              "answer_c": "null",
+              "correct": "b"
+            }
+          ]
+        },
+        {
+          "name": "Strings",
+          "questions": [
+            {
+              "text": "Wie erstellt man einen String?",
+              "answer_a": "Mit Anführungszeichen",
+              "answer_b": "Mit Klammern",
+              "answer_c": "Mit #",
+              "correct": "a"
+            },
+            {
+              "text": "Was macht 'Hello' + 'World'?",
+              "answer_a": "Error",
+              "answer_b": "HelloWorld",
+              "answer_c": "Hello World",
+              "correct": "b"
+            },
+            {
+              "text": "Wie greift man auf das erste Zeichen zu?",
+              "answer_a": "str[0]",
+              "answer_b": "str.first()",
+              "answer_c": "str(0)",
+              "correct": "a"
+            },
+            {
+              "text": "Was gibt 'test'.length zurück?",
+              "answer_a": "3",
+              "answer_b": "4",
+              "answer_c": "5",
+              "correct": "b"
+            },
+            {
+              "text": "Wie wandelt man in Großbuchstaben um?",
+              "answer_a": ".upper()",
+              "answer_b": ".toUpperCase()",
+              "answer_c": ".capital()",
+              "correct": "b"
+            },
+            {
+              "text": "Was sind Template Literals?",
+              "answer_a": "Strings mit ``",
+              "answer_b": "Strings mit ''",
+              "answer_c": "Strings mit ()",
+              "correct": "a"
+            },
+            {
+              "text": "Wie fügt man Variablen in Template Literals ein?",
+              "answer_a": "%variable%",
+              "answer_b": "${variable}",
+              "answer_c": "{variable}",
+              "correct": "b"
+            },
+            {
+              "text": "Was macht .includes('test')?",
+              "answer_a": "Prüft ob enthalten",
+              "answer_b": "Fügt hinzu",
+              "answer_c": "Löscht",
+              "correct": "a"
+            },
+            {
+              "text": "Wie teilt man einen String?",
+              "answer_a": ".split()",
+              "answer_b": ".divide()",
+              "answer_c": ".cut()",
+              "correct": "a"
+            },
+            {
+              "text": "Was ist 'abc'.charAt(1)?",
+              "answer_a": "a",
+              "answer_b": "b",
+              "answer_c": "c",
+              "correct": "b"
+            }
+          ]
+        },
+        {
+          "name": "Arrays",
+          "questions": [
+            {
+              "text": "Wie erstellt man ein Array?",
+              "answer_a": "[]",
+              "answer_b": "{}",
+              "answer_c": "()",
+              "correct": "a"
+            },
+            {
+              "text": "Wie greift man auf das erste Element zu?",
+              "answer_a": "arr[1]",
+              "answer_b": "arr[0]",
+              "answer_c": "arr.first()",
+              "correct": "b"
+            },
+            {
+              "text": "Was macht .push()?",
+              "answer_a": "Entfernt letztes Element",
+              "answer_b": "Fügt am Ende hinzu",
+              "answer_c": "Fügt am Anfang hinzu",
+              "correct": "b"
+            },
+            {
+              "text": "Was macht .pop()?",
+              "answer_a": "Entfernt letztes Element",
+              "answer_b": "Fügt hinzu",
+              "answer_c": "Sortiert",
+              "correct": "a"
+            },
+            {
+              "text": "Wie erhält man die Länge eines Arrays?",
+              "answer_a": ".size",
+              "answer_b": ".length",
+              "answer_c": ".count",
+              "correct": "b"
+            },
+            {
+              "text": "Was ist [1,2,3][1]?",
+              "answer_a": "1",
+              "answer_b": "2",
+              "answer_c": "3",
+              "correct": "b"
+            },
+            {
+              "text": "Kann ein Array verschiedene Typen enthalten?",
+              "answer_a": "Nein",
+              "answer_b": "Ja",
+              "answer_c": "Nur Zahlen",
+              "correct": "b"
+            },
+            {
+              "text": "Was macht .shift()?",
+              "answer_a": "Entfernt erstes Element",
+              "answer_b": "Entfernt letztes Element",
+              "answer_c": "Sortiert",
+              "correct": "a"
+            },
+            {
+              "text": "Was macht .unshift()?",
+              "answer_a": "Entfernt am Anfang",
+              "answer_b": "Fügt am Anfang hinzu",
+              "answer_c": "Fügt am Ende hinzu",
+              "correct": "b"
+            },
+            {
+              "text": "Wie prüft man ob ein Array leer ist?",
+              "answer_a": ".isEmpty()",
+              "answer_b": ".length === 0",
+              "answer_c": ".empty",
+              "correct": "b"
+            }
+          ]
+        },
+        {
+          "name": "Funktionen",
+          "questions": [
+            {
+              "text": "Wie deklariert man eine Funktion?",
+              "answer_a": "function name() {}",
+              "answer_b": "def name() {}",
+              "answer_c": "func name() {}",
+              "correct": "a"
+            },
+            {
+              "text": "Wie ruft man eine Funktion auf?",
+              "answer_a": "name[]",
+              "answer_b": "name()",
+              "answer_c": "call name",
+              "correct": "b"
+            },
+            {
+              "text": "Was macht return?",
+              "answer_a": "Gibt Wert zurück",
+              "answer_b": "Startet neu",
+              "answer_c": "Löscht Funktion",
+              "correct": "a"
+            },
+            {
+              "text": "Was sind Parameter?",
+              "answer_a": "Rückgabewerte",
+              "answer_b": "Eingabewerte",
+              "answer_c": "Variablen",
+              "correct": "b"
+            },
+            {
+              "text": "Wie schreibt man eine Arrow Function?",
+              "answer_a": "=> {}",
+              "answer_b": "-> {}",
+              "answer_c": "= {}",
+              "correct": "a"
+            },
+            {
+              "text": "Was ist () => 5 ?",
+              "answer_a": "Fehler",
+              "answer_b": "Arrow Function",
+              "answer_c": "Array",
+              "correct": "b"
+            },
+            {
+              "text": "Kann eine Funktion mehrere Parameter haben?",
+              "answer_a": "Nein",
+              "answer_b": "Ja",
+              "answer_c": "Nur zwei",
+              "correct": "b"
+            },
+            {
+              "text": "Was passiert ohne return?",
+              "answer_a": "Error",
+              "answer_b": "Gibt undefined zurück",
+              "answer_c": "Gibt 0 zurück",
+              "correct": "b"
+            },
+            {
+              "text": "Wo ist eine lokale Variable verfügbar?",
+              "answer_a": "Überall",
+              "answer_b": "Nur in der Funktion",
+              "answer_c": "Nur global",
+              "correct": "b"
+            },
+            {
+              "text": "Was ist eine anonyme Funktion?",
+              "answer_a": "Ohne Namen",
+              "answer_b": "Ohne Parameter",
+              "answer_c": "Ohne return",
+              "correct": "a"
+            }
+          ]
+        },
+        {
+          "name": "Objekte",
+          "questions": [
+            {
+              "text": "Wie erstellt man ein Objekt?",
+              "answer_a": "[]",
+              "answer_b": "{}",
+              "answer_c": "()",
+              "correct": "b"
+            },
+            {
+              "text": "Wie greift man auf Properties zu?",
+              "answer_a": "obj.key",
+              "answer_b": "obj->key",
+              "answer_c": "obj::key",
+              "correct": "a"
+            },
+            {
+              "text": "Was ist {name: 'Max'}?",
+              "answer_a": "Array",
+              "answer_b": "Objekt",
+              "answer_c": "String",
+              "correct": "b"
+            },
+            {
+              "text": "Wie fügt man ein Property hinzu?",
+              "answer_a": "obj.new = value",
+              "answer_b": "obj.add(new)",
+              "answer_c": "obj + new",
+              "correct": "a"
+            },
+            {
+              "text": "Was ist die Bracket Notation?",
+              "answer_a": "obj[key]",
+              "answer_b": "obj{key}",
+              "answer_c": "obj(key)",
+              "correct": "a"
+            },
+            {
+              "text": "Kann ein Objekt Funktionen enthalten?",
+              "answer_a": "Nein",
+              "answer_b": "Ja",
+              "answer_c": "Nur Arrays",
+              "correct": "b"
+            },
+            {
+              "text": "Was sind Methoden?",
+              "answer_a": "Funktionen in Objekten",
+              "answer_b": "Variablen",
+              "answer_c": "Arrays",
+              "correct": "a"
+            },
+            {
+              "text": "Wie löscht man ein Property?",
+              "answer_a": "remove obj.key",
+              "answer_b": "delete obj.key",
+              "answer_c": "obj.key = null",
+              "correct": "b"
+            },
+            {
+              "text": "Was ist Object.keys()?",
+              "answer_a": "Gibt alle Werte zurück",
+              "answer_b": "Gibt alle Schlüssel zurück",
+              "answer_c": "Löscht Objekt",
+              "correct": "b"
+            },
+            {
+              "text": "Kann man verschachtelte Objekte haben?",
+              "answer_a": "Nein",
+              "answer_b": "Ja",
+              "answer_c": "Nur zwei Ebenen",
+              "correct": "b"
+            }
+          ]
+        },
+        {
+          "name": "Bedingungen",
+          "questions": [
+            {
+              "text": "Wie schreibt man eine if-Bedingung?",
+              "answer_a": "if (condition) {}",
+              "answer_b": "if condition {}",
+              "answer_c": "if: condition {}",
+              "correct": "a"
+            },
+            {
+              "text": "Was macht else?",
+              "answer_a": "Wiederholt Code",
+              "answer_b": "Alternative wenn false",
+              "answer_c": "Beendet Programm",
+              "correct": "b"
+            },
+            {
+              "text": "Was ist else if?",
+              "answer_a": "Weitere Bedingung",
+              "answer_b": "Fehler",
+              "answer_c": "Schleife",
+              "correct": "a"
+            },
+            {
+              "text": "Was ist der ternäre Operator?",
+              "answer_a": "? :",
+              "answer_b": "if else",
+              "answer_c": "&&",
+              "correct": "a"
+            },
+            {
+              "text": "Was ist condition ? a : b ?",
+              "answer_a": "Fehler",
+              "answer_b": "Kurzform für if-else",
+              "answer_c": "Schleife",
+              "correct": "b"
+            },
+            {
+              "text": "Was macht switch?",
+              "answer_a": "Mehrfachauswahl",
+              "answer_b": "Schleife",
+              "answer_c": "Funktion",
+              "correct": "a"
+            },
+            {
+              "text": "Was ist case in switch?",
+              "answer_a": "Schleife",
+              "answer_b": "Einzelner Fall",
+              "answer_c": "Variable",
+              "correct": "b"
+            },
+            {
+              "text": "Was macht break in switch?",
+              "answer_a": "Beendet case",
+              "answer_b": "Startet neu",
+              "answer_c": "Löscht",
+              "correct": "a"
+            },
+            {
+              "text": "Was ist default in switch?",
+              "answer_a": "Erster case",
+              "answer_b": "Letzter case",
+              "answer_c": "Fallback-Option",
+              "correct": "c"
+            },
+            {
+              "text": "Kann man if ohne else verwenden?",
+              "answer_a": "Nein",
+              "answer_b": "Ja",
+              "answer_c": "Nur mit switch",
+              "correct": "b"
+            }
+          ]
+        },
+        {
+          "name": "Schleifen",
+          "questions": [
+            {
+              "text": "Was macht eine for-Schleife?",
+              "answer_a": "Wiederholt Code",
+              "answer_b": "Prüft Bedingung",
+              "answer_c": "Erstellt Array",
+              "correct": "a"
+            },
+            {
+              "text": "Wie schreibt man eine for-Schleife?",
+              "answer_a": "for (i=0; i<10; i++) {}",
+              "answer_b": "for i in 10 {}",
+              "answer_c": "loop 10 {}",
+              "correct": "a"
+            },
+            {
+              "text": "Was ist i++ in for-Schleifen?",
+              "answer_a": "Erhöht i um 1",
+              "answer_b": "Verringert i",
+              "answer_c": "Setzt i auf 0",
+              "correct": "a"
+            },
+            {
+              "text": "Was macht while?",
+              "answer_a": "Einmalige Ausführung",
+              "answer_b": "Wiederholt solange wahr",
+              "answer_c": "Beendet Programm",
+              "correct": "b"
+            },
+            {
+              "text": "Was ist der Unterschied zwischen while und do-while?",
+              "answer_a": "Keiner",
+              "answer_b": "do-while läuft mindestens 1x",
+              "answer_c": "while ist schneller",
+              "correct": "b"
+            },
+            {
+              "text": "Was macht break?",
+              "answer_a": "Beendet Schleife",
+              "answer_b": "Startet neu",
+              "answer_c": "Pausiert",
+              "correct": "a"
+            },
+            {
+              "text": "Was macht continue?",
+              "answer_a": "Beendet Schleife",
+              "answer_b": "Überspringt Durchlauf",
+              "answer_c": "Verdoppelt",
+              "correct": "b"
+            },
+            {
+              "text": "Was ist eine Endlosschleife?",
+              "answer_a": "Sehr lange Schleife",
+              "answer_b": "Schleife ohne Ende",
+              "answer_c": "Fehlerhafte Schleife",
+              "correct": "b"
+            },
+            {
+              "text": "Wie iteriert man über ein Array?",
+              "answer_a": "for oder forEach",
+              "answer_b": "if",
+              "answer_c": "switch",
+              "correct": "a"
+            },
+            {
+              "text": "Was ist for...of?",
+              "answer_a": "Alte Syntax",
+              "answer_b": "Iteriert über Werte",
+              "answer_c": "Fehler",
+              "correct": "b"
+            }
+          ]
+        },
+        {
+          "name": "DOM",
+          "questions": [
+            {
+              "text": "Was ist das DOM?",
+              "answer_a": "Document Object Model",
+              "answer_b": "Data Output Method",
+              "answer_c": "Digital Object Manager",
+              "correct": "a"
+            },
+            {
+              "text": "Wie wählt man ein Element?",
+              "answer_a": "document.querySelector()",
+              "answer_b": "document.get()",
+              "answer_c": "element.find()",
+              "correct": "a"
+            },
+            {
+              "text": "Was macht .innerHTML?",
+              "answer_a": "Liest/Setzt HTML-Inhalt",
+              "answer_b": "Löscht Element",
+              "answer_c": "Erstellt Element",
+              "correct": "a"
+            },
+            {
+              "text": "Was ist .textContent?",
+              "answer_a": "HTML-Code",
+              "answer_b": "Nur Text ohne HTML",
+              "answer_c": "Style",
+              "correct": "b"
+            },
+            {
+              "text": "Wie fügt man Event Listener hinzu?",
+              "answer_a": ".addEventListener()",
+              "answer_b": ".on()",
+              "answer_c": ".listen()",
+              "correct": "a"
+            },
+            {
+              "text": "Was ist 'click'?",
+              "answer_a": "Funktion",
+              "answer_b": "Event-Typ",
+              "answer_c": "Variable",
+              "correct": "b"
+            },
+            {
+              "text": "Wie ändert man CSS mit JS?",
+              "answer_a": ".style.property",
+              "answer_b": ".css()",
+              "answer_c": ".change()",
+              "correct": "a"
+            },
+            {
+              "text": "Was macht .classList.add()?",
+              "answer_a": "Fügt CSS-Klasse hinzu",
+              "answer_b": "Löscht Element",
+              "answer_c": "Erstellt Liste",
+              "correct": "a"
+            },
+            {
+              "text": "Wie erstellt man ein Element?",
+              "answer_a": "document.createElement()",
+              "answer_b": "new Element()",
+              "answer_c": "create.element()",
+              "correct": "a"
+            },
+            {
+              "text": "Was macht .remove()?",
+              "answer_a": "Versteckt Element",
+              "answer_b": "Löscht Element aus DOM",
+              "answer_c": "Ändert Farbe",
+              "correct": "b"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

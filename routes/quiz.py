@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request, render_template, session
 from db_connection import get_questions_db
 import random
 from services.streak_service import update_streak, get_user_streaks
-from services.progress_service import mark_module_completed, get_completed_modules
+from services.progress_service import mark_module_completed, get_completed_modules, get_perfect_modules
 
 quiz_bp = Blueprint("quiz", __name__)
 
@@ -52,15 +52,18 @@ def get_modules(category_id):
 
     if 'user_id' in session:
         completed = get_completed_modules(session['user_id'])
+        perfect = get_perfect_modules(session['user_id'])
     else:
         completed = []
+        perfect = []
 
     result = []
     for mod in modules:
         result.append({
             "id": mod[0],
             "name": mod[1],
-            "completed": mod[0] in completed
+            "completed": mod[0] in completed,
+            "perfect": mod[0] in perfect
         })
     return jsonify(result)        
 
@@ -82,11 +85,16 @@ def get_question(module_id):
     question = get_random_question(module_id)
     
     if question is None:
+        # End of module — compute totals from session
         total = session.get("total_questions", 0)
         correct = session.get("module_questions_correct", 0)
 
-        if "user_id" in session:
-                mark_module_completed(session["user_id"], module_id)
+        # If the user answered all questions correctly, mark as perfect (only for logged-in users)
+        # NOTE: previously this compared against a non-existent key 'module_questions_total'
+        if correct == total:
+            if "user_id" in session:
+                mark_module_completed(session["user_id"], module_id, perfect=True)
+            # if anonymous, we don't persist perfect (per requirement)
 
         return jsonify({
             "completed": True,
