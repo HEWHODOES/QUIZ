@@ -45,7 +45,7 @@ cursor.execute("""
                question_id INTEGER NOT NULL,
                correct BOOLEAN NOT NULL,
                answered_at TEXT DEFAULT (datetime('now')),
-               FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+               FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
                UNIQUE(user_id, question_id)
     )
 """)

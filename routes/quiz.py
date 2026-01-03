@@ -1,14 +1,16 @@
 from flask import Blueprint, jsonify, request, render_template, session
 from db_connection import get_questions_db
 import random
-from services.streak_service import update_streak, get_user_streaks
+from services.streak_service import update_streak
 from services.progress_service import mark_module_completed, get_completed_modules, get_perfect_modules
 
 quiz_bp = Blueprint("quiz", __name__)
 
-asked_questions = []
+
 
 def get_random_question(module_id):
+
+    asked_questions = session.get("asked_questions", [])
 
     conn = get_questions_db()
     cursor = conn.cursor()
@@ -21,7 +23,8 @@ def get_random_question(module_id):
         return None
     
     result = random.choice(remaining)
-    asked_questions.append(result[0])   
+    asked_questions.append(result[0])
+    session["asked_questions"] = asked_questions   
     
     return {
     "id": result[0],
@@ -71,7 +74,9 @@ def get_modules(category_id):
 def get_question(module_id):
 
     if "current_module" not in session or session["current_module"] != module_id:
-        asked_questions.clear()
+        
+        session["asked_questions"] = []
+
         conn = get_questions_db()
         cursor = conn.cursor()
         cursor.execute("SELECT COUNT(*) FROM questions WHERE module_id = ?", (module_id,))
@@ -91,10 +96,11 @@ def get_question(module_id):
 
         # If the user answered all questions correctly, mark as perfect (only for logged-in users)
         # NOTE: previously this compared against a non-existent key 'module_questions_total'
-        if correct == total:
-            if "user_id" in session:
-                mark_module_completed(session["user_id"], module_id, perfect=True)
-            # if anonymous, we don't persist perfect (per requirement)
+        
+        if "user_id" in session:
+            is_perfect = (correct == total)
+            mark_module_completed(session["user_id"], module_id, perfect=is_perfect)
+            
 
         return jsonify({
             "completed": True,
@@ -108,11 +114,13 @@ def get_question(module_id):
 def start():
     session["score"] = 0
     session["streak"] = 0
+    session["asked_questions"] = []
     return render_template("quiz.html")
 
 @quiz_bp.route("/reset_questions", methods=["POST"])
 def reset_questions():
-    asked_questions.clear()
+    session["asked_questions"] = []
+    session["module_questions_correct"] = 0
     return jsonify({"success": True})
 
 @quiz_bp.route("/check_answer", methods=["POST"])

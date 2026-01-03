@@ -1,6 +1,7 @@
 
+import sqlite3
 from flask import Blueprint, request, jsonify, session
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 import sys
 import os
 
@@ -36,7 +37,7 @@ def register():
         session['username'] = username
 
         return jsonify({"success": True, "username": username})
-    except:
+    except sqlite3.IntegrityError:
         conn.close()
         return jsonify({"error": "Username bereits vergeben!"}), 400
     
@@ -59,10 +60,12 @@ def login():
     conn.close()
 
     if not user:
-        return jsonify({"error": "User nicht gefunden!"}), 404
+        return jsonify({"error": "Falscher Username oder Passwort!"}), 401
     
     user_id, user_name, password_hash = user
-
+    if not check_password_hash(password_hash, password):
+        return jsonify({"error": "Falscher Username oder Passwort!"}), 401
+    
     session['user_id'] = user_id
     session['username'] = user_name
     reset_current_streak(user_id)
