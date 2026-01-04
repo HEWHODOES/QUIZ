@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imprint - DevMind</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(45deg, #007a9c, #00294f);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            color: #cce6ff;
+            max-width: 800px;
+            margin: 40px auto;
+            background: linear-gradient(45deg, #00335c, #0090b0 );
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            color: #cce6ff;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        h2 {
+            color: #cce6ff;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #1a2a40, #0b1220);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: transform 0.2s;
+        }
+
+        .back-link:hover {
+            transform: translateY(-2px);
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        strong {
+            color: #8f9faf;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Imprint</h1>
+        
+        <div class="section">
+            <h2>Information according to § 5 TMG</h2>
+            <p>
+                <strong>Name:</strong> <br>Cristiano Schreiber<br>
+                <strong>Address:</strong> <br>Gorch-Fock-Straße 79<br>
+                26721 Emden<br>
+                Germany
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Contact</h2>
+            <p>
+                <strong>Email:</strong> <br>cristianoschreiber.work@gmail.com
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Responsible for content according to § 55 Abs. 2 RStV</h2>
+            <p>
+                Cristiano Schreiber<br>
+                Gorch-Fock-Straße 79<br>
+                26721 Emden<br>
+                Germany
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Credits & Copyright</h2>
+            <p>
+                <strong>GIF Animation:</strong> <br>Created by DEZYNE_3D<br>
+            </p>
+            <p>
+                <br>All other content on this website was created by Cristiano Schreiber.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Disclaimer</h2>
+            <p>
+                <strong>Liability for content:</strong> <br>The content of these pages was created with the greatest care. However, no guarantee can be given for the accuracy, completeness and timeliness of the content.
+            </p>
+        </div>
+
+        <a href="{{ url_for('quiz.start') }}" class="back-link">← Back to Quiz</a>
+    </div>
+</body>
+</html>

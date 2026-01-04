@@ -177,3 +177,7 @@ def check_answer():
         "streak": current_streak,
         "celebrate": show_celebration
         })
+
+@quiz_bp.route('/imprint')
+def imprint():
+    return render_template('imprint.html')
