@@ -40,59 +40,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     
     let currentModuleId = null;
 
-    // Helper: re-render modules for the current category (keeps perfect/completed state from server)
-    async function refreshModulesUI() {
-        const categoryId = moduleContainer.dataset.categoryId;
-        if (!categoryId) return;
-
-        moduleContainer.innerHTML = '';
-
-        const modulesResponse = await fetch(`/get_modules/${categoryId}`);
-        const modules = await modulesResponse.json();
-
-        modules.forEach(module => {
-            const moduleBtn = document.createElement('button');
-            moduleBtn.className = 'modulePickerBtn';
-
-            if (module.perfect) {
-                moduleBtn.classList.add("moduleBtnPerfect");
-            }
-
-            if (module.completed) {
-                moduleBtn.textContent = module.name + ' ✓';
-            } else {
-                moduleBtn.textContent = module.name;
-            }
-                
-            moduleBtn.dataset.moduleId = module.id;
-            moduleContainer.appendChild(moduleBtn);
-                
-            // attach click handler (same behaviour as initial load)
-            moduleBtn.addEventListener('click', async () => {
-                document.getElementById('module-banner').style.display = 'block';
-                document.getElementById('module-name').textContent = module.name;
-                document.querySelector('.section-title').style.display = 'none';
-                await fetch("/reset_questions", { method: "POST" });
-                currentModuleId = module.id;
-                        
-                moduleContainer.style.display = 'none';
-                document.querySelector('.score-box').style.display = "";
-                document.querySelectorAll(".answer-btn").forEach(btn => btn.style.display = "");
-
-                const response = await fetch(`/get_question/${currentModuleId}`);
-                const data = await response.json();
-
-                document.querySelector('.question-container').style.display = 'block';
-                if (data.text) document.getElementById("question-text").textContent = data.text;
-
-                const answerButtons = document.querySelectorAll(".answer-btn");
-                if (data.answer_a) { answerButtons[0].textContent = data.answer_a; answerButtons[0].dataset.questionId = data.id; }
-                if (data.answer_b) { answerButtons[1].textContent = data.answer_b; answerButtons[1].dataset.questionId = data.id; }
-                if (data.answer_c) { answerButtons[2].textContent = data.answer_c; answerButtons[2].dataset.questionId = data.id; }
-            });
-        });
-    }
-
     // === STEP 1: Load categories ===
     const categoriesResponse = await fetch('/get_categories');
     const categories = await categoriesResponse.json();
